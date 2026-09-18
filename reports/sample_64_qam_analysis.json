@@ -1,0 +1,512 @@
+{
+  "schema_version": "2.1",
+  "metadata": {
+    "input_filename": "sample_64_qam.iq",
+    "input_filepath": "C:\\Users\\tejas\\OneDrive\\Desktop\\SIH\\SIH\\data\\test_samples\\sample_64_qam.iq",
+    "input_sha256": "a0999e39dd9521f6be0cb94dcce382ab202a9deccaf674b91894801f5f7e8e0f",
+    "input_size_bytes": 524288,
+    "timestamp_utc": "2026-09-18T19:48:18Z",
+    "operator_id": "SIGINT-AIRGAP-OPERATOR",
+    "model_version": "amc_resnet18_v1.0",
+    "execution_environment": "NTRO Air-Gapped Workstation"
+  },
+  "parameters": {
+    "estimated_fs": 5000000.0,
+    "symbol_rate": 49285.888671875,
+    "symbol_rate_confidence": 0.6504019557556779,
+    "bandwidth_3db": 2441.40625,
+    "occupied_bandwidth_99": 731201.171875,
+    "center_frequency_offset": 378189.97738611256,
+    "snr_db": 3.4554758071899414,
+    "noise_floor_db": -4.226988315582275,
+    "papr_db": 6.72886848449707,
+    "crest_factor": 2.1699185371398926,
+    "carrier_frequency_offset": 299987.79296875,
+    "spectral_flatness": 0.004310457967221737,
+    "envelope_peak": 2.1699187755584717,
+    "envelope_mean": 0.9227988719940186,
+    "envelope_variance": 0.1484423577785492,
+    "burst_duty_cycle": 0.878814697265625,
+    "fs": 5000000.0,
+    "center_freq": 378189.97738611256,
+    "bandwidth_99pct": 731201.171875,
+    "cfo_hz": 299987.79296875
+  },
+  "modulation_classification": {
+    "predicted_class": "64-QAM",
+    "confidence": 0.72,
+    "is_low_confidence": true,
+    "is_ood": false,
+    "probabilities": {
+      "BPSK": 2.42256760429882e-07,
+      "QPSK": 4.724473910755478e-05,
+      "8-PSK": 3.145731398035423e-06,
+      "16-QAM": 0.02414255402982235,
+      "64-QAM": 0.9753307104110718,
+      "2-FSK": 8.882549082045443e-06,
+      "4-FSK": 0.00041768705705180764,
+      "AM-DSB": 4.229631485941354e-06,
+      "WBFM": 4.528881254373118e-05
+    },
+    "features_used": "ResNet-18 1D CNN"
+  },
+  "demodulation": {
+    "modulation": "64-QAM",
+    "total_bits": 393216,
+    "evm_pct": 9.999763488769531,
+    "carrier_phase_error": 0.4762742519378662
+  },
+  "decoding": {},
+  "extracted_frames": [
+    {
+      "sync_index": 133,
+      "transmitter_id": "0x9649",
+      "sequence_number": 9367,
+      "payload_length": 20813,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "0228C23867DAC7161C50D2628EB1FEE7"
+    },
+    {
+      "sync_index": 195,
+      "transmitter_id": "0xCF71",
+      "sequence_number": 58889,
+      "payload_length": 20026,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "78EBCB675C5380461E3AF3DBF7D74514"
+    },
+    {
+      "sync_index": 1027,
+      "transmitter_id": "0xD4D8",
+      "sequence_number": 41736,
+      "payload_length": 49016,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "C30418545934D7D755145924D7D71C50"
+    },
+    {
+      "sync_index": 1102,
+      "transmitter_id": "0x5D36",
+      "sequence_number": 22849,
+      "payload_length": 17751,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "5D36D941471D7DEFFFCFBAE38A228AAE"
+    },
+    {
+      "sync_index": 1239,
+      "transmitter_id": "0xC714",
+      "sequence_number": 17685,
+      "payload_length": 23667,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "DD70E19454775D71A6192490D3CEBE7A"
+    },
+    {
+      "sync_index": 1318,
+      "transmitter_id": "0xD5C4",
+      "sequence_number": 20807,
+      "payload_length": 11507,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "6DB79618A0C282130471963AFF79E6D3"
+    },
+    {
+      "sync_index": 1414,
+      "transmitter_id": "0x7DEC",
+      "sequence_number": 64398,
+      "payload_length": 27077,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "0086192C31CC325A79C70C3041051545"
+    },
+    {
+      "sync_index": 2359,
+      "transmitter_id": "0xE213",
+      "sequence_number": 52894,
+      "payload_length": 16050,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "4DB28AAABEB2C965934D34D34935DD71"
+    },
+    {
+      "sync_index": 2637,
+      "transmitter_id": "0xC514",
+      "sequence_number": 21341,
+      "payload_length": 29158,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "09460BA5DC775E6894F18229B418A053"
+    },
+    {
+      "sync_index": 2779,
+      "transmitter_id": "0x92F9",
+      "sequence_number": 55275,
+      "payload_length": 3193,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "774DB6FB1C50615124DBCE7145861871"
+    },
+    {
+      "sync_index": 2884,
+      "transmitter_id": "0x5DB6",
+      "sequence_number": 18531,
+      "payload_length": 7540,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "F3CF1D7DE7BFDF6DB7CF3EEBABA6B3EE"
+    },
+    {
+      "sync_index": 3027,
+      "transmitter_id": "0xD5D3",
+      "sequence_number": 23031,
+      "payload_length": 23799,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "0A071E3EF6FDD5516DA6935D54516596"
+    },
+    {
+      "sync_index": 3047,
+      "transmitter_id": "0x9F75",
+      "sequence_number": 53104,
+      "payload_length": 41073,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "E3EF6FDD5516DA6935D5451659659608"
+    },
+    {
+      "sync_index": 3063,
+      "transmitter_id": "0xCF70",
+      "sequence_number": 41073,
+      "payload_length": 48762,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "6FDD5516DA6935D54516596596080431"
+    },
+    {
+      "sync_index": 3129,
+      "transmitter_id": "0x545B",
+      "sequence_number": 27044,
+      "payload_length": 48754,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "14596596582010C61E3AFBDBF75C735C"
+    },
+    {
+      "sync_index": 3285,
+      "transmitter_id": "0xC735",
+      "sequence_number": 51096,
+      "payload_length": 9268,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "F38E1860869E78EBCF67546431A3AFA5"
+    },
+    {
+      "sync_index": 3901,
+      "transmitter_id": "0x9269",
+      "sequence_number": 63487,
+      "payload_length": 48657,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "C704181090A32966F2C7145965861C50"
+    },
+    {
+      "sync_index": 4003,
+      "transmitter_id": "0xA643",
+      "sequence_number": 20026,
+      "payload_length": 48644,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "9E78EBEF7FBE75C735E281461A3EF2F9"
+    },
+    {
+      "sync_index": 4334,
+      "transmitter_id": "0xC73C",
+      "sequence_number": 47784,
+      "payload_length": 46943,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "3EFD638B0E286934555DF38FBFDE79A6"
+    },
+    {
+      "sync_index": 5043,
+      "transmitter_id": "0xC714",
+      "sequence_number": 21260,
+      "payload_length": 14496,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "1182AB2D9D73DF71E6992D3C62D1431E"
+    },
+    {
+      "sync_index": 5500,
+      "transmitter_id": "0x79FE",
+      "sequence_number": 60312,
+      "payload_length": 20537,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "D3C7DECEA881208E30D34F1D75E5B2E8"
+    },
+    {
+      "sync_index": 5523,
+      "transmitter_id": "0xCC28",
+      "sequence_number": 7401,
+      "payload_length": 48454,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "67544090471869A78EBAF2D974592C20"
+    },
+    {
+      "sync_index": 5853,
+      "transmitter_id": "0xD555",
+      "sequence_number": 19829,
+      "payload_length": 23667,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "5C78A092CB651535C79A64B0F3862C96"
+    },
+    {
+      "sync_index": 6041,
+      "transmitter_id": "0xFFFF",
+      "sequence_number": 48890,
+      "payload_length": 48390,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "7D56E8C23966F0E75BA308A59B431745"
+    },
+    {
+      "sync_index": 6328,
+      "transmitter_id": "0x79FE",
+      "sequence_number": 60312,
+      "payload_length": 28680,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "6104514DB6DB6DB6CA2830C5104869E7"
+    },
+    {
+      "sync_index": 6351,
+      "transmitter_id": "0xCC38",
+      "sequence_number": 1072,
+      "payload_length": 33320,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "A6DB6DB6DB65141862882434F3AF9EAE"
+    },
+    {
+      "sync_index": 6397,
+      "transmitter_id": "0xD649",
+      "sequence_number": 9362,
+      "payload_length": 18726,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "BAF9E75DF6F2C31418545BAF9FFE3141"
+    },
+    {
+      "sync_index": 6520,
+      "transmitter_id": "0x5D22",
+      "sequence_number": 33536,
+      "payload_length": 3701,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "F1F7BB8E6140A30D564EB9EE3C50492C"
+    },
+    {
+      "sync_index": 6943,
+      "transmitter_id": "0x16CA",
+      "sequence_number": 43966,
+      "payload_length": 48277,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "9B6DA69B6DB6DBCF7D555349AAABE6D3"
+    },
+    {
+      "sync_index": 7977,
+      "transmitter_id": "0x4409",
+      "sequence_number": 2080,
+      "payload_length": 43628,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "B0868E3EF3F9F7554592CA29A493554D"
+    },
+    {
+      "sync_index": 8085,
+      "transmitter_id": "0x5459",
+      "sequence_number": 11426,
+      "payload_length": 39497,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "3554D71A64BCEBEF8FBDBF7545106514"
+    },
+    {
+      "sync_index": 8229,
+      "transmitter_id": "0x4510",
+      "sequence_number": 25876,
+      "payload_length": 4295,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "9A6192C34504014738F9EBDBF71DF71A"
+    },
+    {
+      "sync_index": 8254,
+      "transmitter_id": "0xD7DE",
+      "sequence_number": 28875,
+      "payload_length": 15578,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "7975F7FD718E0C284811C411CBF9AC95"
+    },
+    {
+      "sync_index": 8362,
+      "transmitter_id": "0x7B7E",
+      "sequence_number": 58302,
+      "payload_length": 48100,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "6536AB9EEBCC01845369AA822CB2CB2C"
+    },
+    {
+      "sync_index": 8419,
+      "transmitter_id": "0x92A8",
+      "sequence_number": 49704,
+      "payload_length": 26620,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "F7592CAAFBA69A69A69B4D7514D0228A"
+    },
+    {
+      "sync_index": 8473,
+      "transmitter_id": "0xD64B",
+      "sequence_number": 10942,
+      "payload_length": 48086,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "9A69A6D35D453408A2BA4965B698228E"
+    },
+    {
+      "sync_index": 8589,
+      "transmitter_id": "0xD45B",
+      "sequence_number": 27044,
+      "payload_length": 38525,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "D714410410C39E6192D3CEBE2E914398"
+    },
+    {
+      "sync_index": 8643,
+      "transmitter_id": "0xC510",
+      "sequence_number": 16644,
+      "payload_length": 12519,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "9864B4F3AF8BA450E60B0F38E88B6582"
+    },
+    {
+      "sync_index": 8845,
+      "transmitter_id": "0xB2AA",
+      "sequence_number": 53021,
+      "payload_length": 30198,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "DA79C75DEE7970D2628C228F5F7DB6DA"
+    },
+    {
+      "sync_index": 9091,
+      "transmitter_id": "0xF55B",
+      "sequence_number": 11450,
+      "payload_length": 26933,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "94D2688228A2AEBAEF9A692CAA308238"
+    },
+    {
+      "sync_index": 9177,
+      "transmitter_id": "0xD754",
+      "sequence_number": 20804,
+      "payload_length": 6501,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "B4D573DF71E6192C34F18229B6506182"
+    },
+    {
+      "sync_index": 9220,
+      "transmitter_id": "0xD259",
+      "sequence_number": 21601,
+      "payload_length": 1136,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "CF369E5873EEB24D7CF3EDA6935F5943"
+    },
+    {
+      "sync_index": 9319,
+      "transmitter_id": "0x926B",
+      "sequence_number": 59295,
+      "payload_length": 27956,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "9AFACA19E6B1E5C3488E32CF3EFBEB28"
+    },
+    {
+      "sync_index": 9410,
+      "transmitter_id": "0x8F2E",
+      "sequence_number": 6724,
+      "payload_length": 29078,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "79F7DF59470CB3EDF5C79E6DB7DF71CF"
+    },
+    {
+      "sync_index": 9639,
+      "transmitter_id": "0xC538",
+      "sequence_number": 9248,
+      "payload_length": 35561,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "35546090C60AA6DB2C21A78FBD9D5388"
+    },
+    {
+      "sync_index": 9679,
+      "transmitter_id": "0x16CA",
+      "sequence_number": 43935,
+      "payload_length": 28473,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "F55924D3DE58704262AC77F0C5061436"
+    },
+    {
+      "sync_index": 9844,
+      "transmitter_id": "0x792A",
+      "sequence_number": 33540,
+      "payload_length": 34356,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "5564BB8A61406155D6CEB9EEB871C70C"
+    },
+    {
+      "sync_index": 9949,
+      "transmitter_id": "0x5452",
+      "sequence_number": 25228,
+      "payload_length": 8847,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "1C71E71F7D34D65A228C228E1967DBCB"
+    },
+    {
+      "sync_index": 10225,
+      "transmitter_id": "0xE0B2",
+      "sequence_number": 39549,
+      "payload_length": 47867,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "C6894E9FBD9D73DD7986C3CE08B65822"
+    },
+    {
+      "sync_index": 10243,
+      "transmitter_id": "0x9608",
+      "sequence_number": 57864,
+      "payload_length": 47864,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "C581098A308A19E4F0C7DD269F76F0C7"
+    }
+  ]
+}

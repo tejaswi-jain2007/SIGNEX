@@ -1,0 +1,8 @@
+{
+  "sample_rate": 4000000.0,
+  "center_freq": 250000.0,
+  "format": "float32",
+  "modulation": "16-QAM",
+  "nominal_snr_db": 28.0,
+  "description": "High-Order 16-QAM Broadband Link"
+}

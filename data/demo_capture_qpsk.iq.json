@@ -1,0 +1,5 @@
+{
+  "sample_rate": 2000000.0,
+  "center_freq": 100000.0,
+  "format": "float32"
+}

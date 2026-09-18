@@ -1,0 +1,8 @@
+{
+  "sample_rate": 2000000.0,
+  "center_freq": 120000.0,
+  "format": "float32",
+  "modulation": "WBFM",
+  "nominal_snr_db": 26.0,
+  "description": "Wideband Frequency Modulated Radio"
+}

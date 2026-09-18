@@ -1,0 +1,8 @@
+{
+  "sample_rate": 5000000.0,
+  "center_freq": 300000.0,
+  "format": "float32",
+  "modulation": "64-QAM",
+  "nominal_snr_db": 30.0,
+  "description": "64-QAM Dense Constellation Link"
+}

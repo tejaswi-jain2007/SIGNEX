@@ -1,0 +1,8 @@
+{
+  "sample_rate": 2000000.0,
+  "center_freq": 100000.0,
+  "format": "float32",
+  "modulation": "QPSK",
+  "nominal_snr_db": 25.0,
+  "description": "Clean QPSK Satellite Telemetry"
+}

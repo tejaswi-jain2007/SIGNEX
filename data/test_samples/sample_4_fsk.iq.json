@@ -1,0 +1,8 @@
+{
+  "sample_rate": 2000000.0,
+  "center_freq": 80000.0,
+  "format": "float32",
+  "modulation": "4-FSK",
+  "nominal_snr_db": 22.0,
+  "description": "4-FSK Multi-Level FSK Telemetry"
+}

@@ -1,0 +1,18 @@
+{
+  "venvPath": ".",
+  "venv": "venv",
+  "extraPaths": [
+    ".",
+    "venv/Lib/site-packages"
+  ],
+  "include": [
+    "ntro_sigint",
+    "tests",
+    "scripts",
+    "main.py",
+    "run_gui.py"
+  ],
+  "reportMissingImports": "none",
+  "pythonVersion": "3.11",
+  "pythonPlatform": "Windows"
+}

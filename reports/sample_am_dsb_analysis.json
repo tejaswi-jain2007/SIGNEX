@@ -1,0 +1,512 @@
+{
+  "schema_version": "2.1",
+  "metadata": {
+    "input_filename": "sample_am_dsb.iq",
+    "input_filepath": "C:\\Users\\tejas\\AppData\\Local\\Temp\\tmpa0clkf29\\sample_am_dsb.iq",
+    "input_sha256": "c158a7cbcc7d810329ad41834a75d000872b0bf49e7578351cc4dcf1e1b838f9",
+    "input_size_bytes": 524288,
+    "timestamp_utc": "2026-09-18T19:53:00Z",
+    "operator_id": "SIGINT-AIRGAP-OPERATOR",
+    "model_version": "amc_resnet18_v1.0",
+    "execution_environment": "NTRO Air-Gapped Workstation"
+  },
+  "parameters": {
+    "estimated_fs": 5000000.0,
+    "symbol_rate": 184173.583984375,
+    "symbol_rate_confidence": 0.4367649789042338,
+    "bandwidth_3db": 3662.109375,
+    "occupied_bandwidth_99": 2987060.546875,
+    "center_frequency_offset": 80.48337975217238,
+    "snr_db": 17.94033432006836,
+    "noise_floor_db": 6.07460880279541,
+    "papr_db": 7.194762706756592,
+    "crest_factor": 2.289486885070801,
+    "carrier_frequency_offset": 0.0,
+    "spectral_flatness": 0.030757024884223938,
+    "envelope_peak": 2.2894866466522217,
+    "envelope_mean": 0.8622510433197021,
+    "envelope_variance": 0.25652310252189636,
+    "burst_duty_cycle": 0.7433319091796875,
+    "fs": 5000000.0,
+    "center_freq": 80.48337975217238,
+    "bandwidth_99pct": 2987060.546875,
+    "cfo_hz": 0.0
+  },
+  "modulation_classification": {
+    "predicted_class": "AM-DSB",
+    "confidence": 0.9949765205383301,
+    "is_low_confidence": false,
+    "is_ood": false,
+    "probabilities": {
+      "BPSK": 4.681114376126061e-07,
+      "QPSK": 3.626628313213587e-07,
+      "8-PSK": 7.44782664696686e-05,
+      "16-QAM": 0.004540619440376759,
+      "64-QAM": 0.00017126486636698246,
+      "2-FSK": 1.5116786926228087e-05,
+      "4-FSK": 1.2021409929729998e-06,
+      "AM-DSB": 0.9949765205383301,
+      "WBFM": 0.0002199981827288866
+    },
+    "features_used": "ResNet-18 1D CNN"
+  },
+  "demodulation": {
+    "modulation": "QPSK",
+    "total_bits": 131072,
+    "evm_pct": 9.999998092651367,
+    "carrier_phase_error": 0.12556645274162292
+  },
+  "decoding": {},
+  "extracted_frames": [
+    {
+      "sync_index": 23,
+      "transmitter_id": "0xD757",
+      "sequence_number": 65503,
+      "payload_length": 16374,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "DFDF7FFFFFFFFFFFFFFFFFFFFFFFFFF0"
+    },
+    {
+      "sync_index": 3771,
+      "transmitter_id": "0x2BFA",
+      "sequence_number": 65535,
+      "payload_length": 15905,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "90180000000000000000000000000000"
+    },
+    {
+      "sync_index": 5222,
+      "transmitter_id": "0x9008",
+      "sequence_number": 0,
+      "payload_length": 0,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": ""
+    },
+    {
+      "sync_index": 5605,
+      "transmitter_id": "0x0000",
+      "sequence_number": 0,
+      "payload_length": 0,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": ""
+    },
+    {
+      "sync_index": 11219,
+      "transmitter_id": "0xFCFF",
+      "sequence_number": 65535,
+      "payload_length": 14974,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "FFFFFFFFFFFFFFFFFFFFFFFFFFFC0000"
+    },
+    {
+      "sync_index": 11807,
+      "transmitter_id": "0x7F79",
+      "sequence_number": 12288,
+      "payload_length": 0,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": ""
+    },
+    {
+      "sync_index": 13165,
+      "transmitter_id": "0xFBDF",
+      "sequence_number": 65535,
+      "payload_length": 14731,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "E6C97FFFFFFFFFFFFFFFFFFFFFFFFFFF"
+    },
+    {
+      "sync_index": 17204,
+      "transmitter_id": "0xFBFD",
+      "sequence_number": 63485,
+      "payload_length": 14226,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB8"
+    },
+    {
+      "sync_index": 17760,
+      "transmitter_id": "0xBDE6",
+      "sequence_number": 52991,
+      "payload_length": 14157,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "F7DC0020000000000000000000000000"
+    },
+    {
+      "sync_index": 18784,
+      "transmitter_id": "0x8000",
+      "sequence_number": 0,
+      "payload_length": 0,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": ""
+    },
+    {
+      "sync_index": 19181,
+      "transmitter_id": "0xFFB7",
+      "sequence_number": 61439,
+      "payload_length": 13979,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
+    },
+    {
+      "sync_index": 23752,
+      "transmitter_id": "0x6FA5",
+      "sequence_number": 65527,
+      "payload_length": 13408,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "FF93FA80800000000000000000000000"
+    },
+    {
+      "sync_index": 24557,
+      "transmitter_id": "0xE728",
+      "sequence_number": 0,
+      "payload_length": 0,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": ""
+    },
+    {
+      "sync_index": 25607,
+      "transmitter_id": "0x0000",
+      "sequence_number": 0,
+      "payload_length": 0,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": ""
+    },
+    {
+      "sync_index": 27170,
+      "transmitter_id": "0xAFE5",
+      "sequence_number": 65531,
+      "payload_length": 12981,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "FE7DFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
+    },
+    {
+      "sync_index": 27214,
+      "transmitter_id": "0xFFE7",
+      "sequence_number": 57343,
+      "payload_length": 12975,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "FFFFFFFFFFFFFFFFFFFFFFFFFFFD6400"
+    },
+    {
+      "sync_index": 27780,
+      "transmitter_id": "0xFDFF",
+      "sequence_number": 65471,
+      "payload_length": 12904,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "00000000000000000000000000000000"
+    },
+    {
+      "sync_index": 31180,
+      "transmitter_id": "0xFFE6",
+      "sequence_number": 65484,
+      "payload_length": 12479,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
+    },
+    {
+      "sync_index": 31199,
+      "transmitter_id": "0xFE63",
+      "sequence_number": 14075,
+      "payload_length": 12477,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFED"
+    },
+    {
+      "sync_index": 31214,
+      "transmitter_id": "0x9B7D",
+      "sequence_number": 65535,
+      "payload_length": 12475,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "FFFFFFFFFFFFFFFFFFFFFFFFFFF6D010"
+    },
+    {
+      "sync_index": 32562,
+      "transmitter_id": "0x9A00",
+      "sequence_number": 0,
+      "payload_length": 0,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": ""
+    },
+    {
+      "sync_index": 35763,
+      "transmitter_id": "0xE5FE",
+      "sequence_number": 65535,
+      "payload_length": 11906,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "EEC45000000000000000000000000000"
+    },
+    {
+      "sync_index": 39161,
+      "transmitter_id": "0x1000",
+      "sequence_number": 258,
+      "payload_length": 1184,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "01004040800000000000000000000000"
+    },
+    {
+      "sync_index": 39205,
+      "transmitter_id": "0xFFEF",
+      "sequence_number": 64507,
+      "payload_length": 11476,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF20"
+    },
+    {
+      "sync_index": 41229,
+      "transmitter_id": "0xFFFF",
+      "sequence_number": 65535,
+      "payload_length": 11223,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "FFFFFFFFFFFFFFFFFFFFFFFF00000000"
+    },
+    {
+      "sync_index": 42423,
+      "transmitter_id": "0x5000",
+      "sequence_number": 0,
+      "payload_length": 0,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": ""
+    },
+    {
+      "sync_index": 47779,
+      "transmitter_id": "0xFFFF",
+      "sequence_number": 65531,
+      "payload_length": 10404,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "00000000000000000000000000000000"
+    },
+    {
+      "sync_index": 47969,
+      "transmitter_id": "0x1000",
+      "sequence_number": 0,
+      "payload_length": 0,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": ""
+    },
+    {
+      "sync_index": 48559,
+      "transmitter_id": "0x5000",
+      "sequence_number": 0,
+      "payload_length": 0,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": ""
+    },
+    {
+      "sync_index": 49202,
+      "transmitter_id": "0xFFFF",
+      "sequence_number": 64511,
+      "payload_length": 10227,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0"
+    },
+    {
+      "sync_index": 49752,
+      "transmitter_id": "0xBF77",
+      "sequence_number": 65279,
+      "payload_length": 10158,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "BFD95600200000000000000000000000"
+    },
+    {
+      "sync_index": 50193,
+      "transmitter_id": "0x8000",
+      "sequence_number": 0,
+      "payload_length": 0,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": ""
+    },
+    {
+      "sync_index": 51228,
+      "transmitter_id": "0xFDFF",
+      "sequence_number": 65535,
+      "payload_length": 9973,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "FFFFFFFFFFFFFFFFFFFFFFFF40000000"
+    },
+    {
+      "sync_index": 51605,
+      "transmitter_id": "0x0000",
+      "sequence_number": 0,
+      "payload_length": 0,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": ""
+    },
+    {
+      "sync_index": 55605,
+      "transmitter_id": "0x2000",
+      "sequence_number": 0,
+      "payload_length": 0,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": ""
+    },
+    {
+      "sync_index": 57211,
+      "transmitter_id": "0xE77F",
+      "sequence_number": 32767,
+      "payload_length": 9225,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "FFFFFFFFFFFFFFFFFFFFFFFFFFFFD000"
+    },
+    {
+      "sync_index": 59011,
+      "transmitter_id": "0x5000",
+      "sequence_number": 0,
+      "payload_length": 0,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": ""
+    },
+    {
+      "sync_index": 60565,
+      "transmitter_id": "0x8000",
+      "sequence_number": 0,
+      "payload_length": 0,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": ""
+    },
+    {
+      "sync_index": 64562,
+      "transmitter_id": "0x2000",
+      "sequence_number": 0,
+      "payload_length": 0,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": ""
+    },
+    {
+      "sync_index": 65013,
+      "transmitter_id": "0x4000",
+      "sequence_number": 0,
+      "payload_length": 0,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": ""
+    },
+    {
+      "sync_index": 65773,
+      "transmitter_id": "0x7ECF",
+      "sequence_number": 65535,
+      "payload_length": 8155,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "A2000000000000000000000000000000"
+    },
+    {
+      "sync_index": 71607,
+      "transmitter_id": "0x0000",
+      "sequence_number": 0,
+      "payload_length": 0,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": ""
+    },
+    {
+      "sync_index": 73155,
+      "transmitter_id": "0xE001",
+      "sequence_number": 261,
+      "payload_length": 273,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": "41730400000000000000000000000000"
+    },
+    {
+      "sync_index": 77599,
+      "transmitter_id": "0xC400",
+      "sequence_number": 0,
+      "payload_length": 0,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": ""
+    },
+    {
+      "sync_index": 77968,
+      "transmitter_id": "0xE000",
+      "sequence_number": 0,
+      "payload_length": 0,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": ""
+    },
+    {
+      "sync_index": 78561,
+      "transmitter_id": "0x8100",
+      "sequence_number": 0,
+      "payload_length": 0,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": ""
+    },
+    {
+      "sync_index": 79203,
+      "transmitter_id": "0x7DEF",
+      "sequence_number": 45023,
+      "payload_length": 6476,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF3C"
+    },
+    {
+      "sync_index": 81807,
+      "transmitter_id": "0xE93B",
+      "sequence_number": 29184,
+      "payload_length": 0,
+      "crc_valid": false,
+      "fec_status": "CRC_MISMATCH",
+      "hex_preview": ""
+    },
+    {
+      "sync_index": 83219,
+      "transmitter_id": "0x4DFF",
+      "sequence_number": 65535,
+      "payload_length": 5974,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "FFFFFFFFFFFFFFFFFFFFFFFFFFE50000"
+    },
+    {
+      "sync_index": 89239,
+      "transmitter_id": "0xFFFF",
+      "sequence_number": 65535,
+      "payload_length": 5222,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "FFFFFFFFFFFFFFFFFFFFFF8000000000"
+    }
+  ]
+}

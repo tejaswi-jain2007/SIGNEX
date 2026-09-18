@@ -1,0 +1,39 @@
+# Python Virtual Environments
+venv/
+env/
+ENV/
+.venv/
+
+# Node & Frontend Build
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+
+# Python cache & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Temporary Test Files & Scratch
+test_tmp.*
+test_debug.*
+test_b.iq
+*.log

@@ -1,0 +1,8 @@
+{
+  "sample_rate": 1000000.0,
+  "center_freq": 50000.0,
+  "format": "float32",
+  "modulation": "BPSK",
+  "nominal_snr_db": 18.0,
+  "description": "Standard BPSK Tactical Datalink"
+}

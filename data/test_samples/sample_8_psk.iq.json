@@ -1,0 +1,8 @@
+{
+  "sample_rate": 2000000.0,
+  "center_freq": 150000.0,
+  "format": "float32",
+  "modulation": "8-PSK",
+  "nominal_snr_db": 22.0,
+  "description": "8-PSK High Spectral Efficiency Carrier"
+}

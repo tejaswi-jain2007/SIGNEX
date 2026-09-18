@@ -1,0 +1,8 @@
+{
+  "sample_rate": 1000000.0,
+  "center_freq": 0.0,
+  "format": "float32",
+  "modulation": "2-FSK",
+  "nominal_snr_db": 20.0,
+  "description": "2-FSK Military Frequency Shift Keying"
+}

@@ -1,0 +1,75 @@
+{
+  "schema_version": "2.1",
+  "metadata": {
+    "input_filename": "demo_capture_qpsk.iq",
+    "input_filepath": "C:\\Users\\tejas\\OneDrive\\Desktop\\SIH\\SIH\\data\\demo_capture_qpsk.iq",
+    "input_sha256": "a3eab8dc5fe4edc204c1d9664aef38288016a787f3f56e2009de3ff31ebe1ed3",
+    "input_size_bytes": 524288,
+    "timestamp_utc": "2026-09-18T18:14:41Z",
+    "operator_id": "SIGINT-AIRGAP-OPERATOR",
+    "model_version": "amc_resnet18_v1.0",
+    "execution_environment": "NTRO Air-Gapped Workstation"
+  },
+  "parameters": {
+    "estimated_fs": 2000000.0,
+    "symbol_rate": 250000.0,
+    "symbol_rate_confidence": 0.99,
+    "bandwidth_3db": 1464.84375,
+    "occupied_bandwidth_99": 301269.53125,
+    "center_frequency_offset": -2024.2770734500955,
+    "snr_db": 8.938485145568848,
+    "noise_floor_db": 1.240128993988037,
+    "papr_db": 4.449938774108887,
+    "crest_factor": 1.6691560745239258,
+    "carrier_frequency_offset": 0.0,
+    "spectral_flatness": 0.01919550448656082,
+    "envelope_peak": 1.6691560745239258,
+    "envelope_mean": 0.9612753391265869,
+    "envelope_variance": 0.07594990730285645,
+    "burst_duty_cycle": 0.952056884765625,
+    "fs": 2000000.0,
+    "center_freq": -2024.2770734500955,
+    "bandwidth_99pct": 301269.53125,
+    "cfo_hz": 0.0
+  },
+  "modulation_classification": {
+    "predicted_class": "QPSK",
+    "confidence": 0.9999999403953552,
+    "is_low_confidence": false,
+    "is_ood": false,
+    "probabilities": {
+      "BPSK": 2.936543230802613e-10,
+      "QPSK": 0.9999999403953552,
+      "8-PSK": 1.598805809965853e-10,
+      "16-QAM": 6.937236562976068e-09,
+      "64-QAM": 2.994714165538426e-08,
+      "2-FSK": 1.2077489008888165e-09,
+      "4-FSK": 4.964877842184023e-09,
+      "AM-DSB": 7.719527599613085e-14,
+      "WBFM": 1.3518354435859692e-08
+    },
+    "features_used": "ResNet-18 1D CNN"
+  },
+  "demodulation": {
+    "modulation": "QPSK",
+    "total_bits": 131072,
+    "evm_pct": 10.0,
+    "carrier_phase_error": 0.2681284248828888
+  },
+  "decoding": {},
+  "extracted_frames": [
+    {
+      "sync_index": 127570,
+      "header": {
+        "transmitter_id": 21760,
+        "sequence_number": 127,
+        "payload_length": 65514,
+        "header_bytes_hex": "5500007FFFEA"
+      },
+      "payload_length_bytes": 431,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "AA95555FFFFFFFF55400003FFFFAAAAA"
+    }
+  ]
+}

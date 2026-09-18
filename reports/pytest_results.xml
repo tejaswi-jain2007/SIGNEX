@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="4" failures="0" skipped="0" tests="4" time="35.511" timestamp="2026-09-18T20:49:27.492848+05:30" hostname="EDGE"><testcase classname="" name="tests.test_amc" time="0.000"><error message="collection failure">tests\test_amc.py:11: in &lt;module&gt;
+    from ntro_sigint.ml.amc_classifier import ModulationClassifier, AMCResult
+ntro_sigint\ml\amc_classifier.py:15: in &lt;module&gt;
+    import torch
+..\..\..\AppData\Roaming\Python\Python313\site-packages\torch\__init__.py:309: in &lt;module&gt;
+    _load_dll_libraries()
+..\..\..\AppData\Roaming\Python\Python313\site-packages\torch\__init__.py:292: in _load_dll_libraries
+    raise err
+E   OSError: [WinError 1114] A dynamic link library (DLL) initialization routine failed. Error loading "C:\Users\rajde\AppData\Roaming\Python\Python313\site-packages\torch\lib\c10.dll" or one of its dependencies.</error></testcase><testcase classname="" name="tests.test_e2e" time="0.000"><error message="collection failure">tests\test_e2e.py:12: in &lt;module&gt;
+    from ntro_sigint.core.pipeline import SignalAnalysisPipeline
+ntro_sigint\core\pipeline.py:15: in &lt;module&gt;
+    from ntro_sigint.ml.amc_classifier import ModulationClassifier, AMCResult
+ntro_sigint\ml\amc_classifier.py:15: in &lt;module&gt;
+    import torch
+..\..\..\AppData\Roaming\Python\Python313\site-packages\torch\__init__.py:309: in &lt;module&gt;
+    _load_dll_libraries()
+..\..\..\AppData\Roaming\Python\Python313\site-packages\torch\__init__.py:292: in _load_dll_libraries
+    raise err
+E   OSError: [WinError 1114] A dynamic link library (DLL) initialization routine failed. Error loading "C:\Users\rajde\AppData\Roaming\Python\Python313\site-packages\torch\lib\c10.dll" or one of its dependencies.</error></testcase><testcase classname="" name="tests.test_gui" time="0.000"><error message="collection failure">ImportError while importing test module 'C:\Users\rajde\OneDrive\Desktop\SIH\tests\test_gui.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+..\..\..\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\test_gui.py:14: in &lt;module&gt;
+    from PyQt6.QtWidgets import QApplication
+E   ImportError: DLL load failed while importing QtWidgets: The specified module could not be found.</error></testcase><testcase classname="" name="tests.test_performance" time="0.000"><error message="collection failure">tests\test_performance.py:13: in &lt;module&gt;
+    import torch
+..\..\..\AppData\Roaming\Python\Python313\site-packages\torch\__init__.py:309: in &lt;module&gt;
+    _load_dll_libraries()
+..\..\..\AppData\Roaming\Python\Python313\site-packages\torch\__init__.py:292: in _load_dll_libraries
+    raise err
+E   OSError: [WinError 1114] A dynamic link library (DLL) initialization routine failed. Error loading "C:\Users\rajde\AppData\Roaming\Python\Python313\site-packages\torch\lib\c10.dll" or one of its dependencies.</error></testcase></testsuite></testsuites>

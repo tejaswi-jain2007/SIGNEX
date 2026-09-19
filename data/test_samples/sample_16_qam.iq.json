@@ -1,8 +1,9 @@
 {
-  "sample_rate": 4000000.0,
-  "center_freq": 250000.0,
-  "format": "float32",
+  "sample_rate": 2000000.0,
+  "center_freq": 100000.0,
+  "format": "complex64",
   "modulation": "16-QAM",
   "nominal_snr_db": 28.0,
-  "description": "High-Order 16-QAM Broadband Link"
+  "description": "16-QAM High-Speed Backhaul Stream",
+  "embedded_message": "HIGH-SPEED DIGITAL BACKHAUL // PACKET: 0x4A12 // TRANSMITTER: 0x01FA // PAYLOAD: SECURE ENCLAVE ACTIVE"
 }

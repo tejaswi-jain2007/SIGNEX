@@ -1,0 +1,9 @@
+{
+  "sample_rate": 2000000.0,
+  "center_freq": 1000000.0,
+  "format": "complex64",
+  "modulation": "BPSK",
+  "nominal_snr_db": 24.0,
+  "description": "Special Operations Extraction Distress Beacon",
+  "embedded_message": "I NEED HELP URGENT // POSITION COMPROMISED AT EXTRACTION POINT DELTA // SEND IMMEDIATE EVAC"
+}

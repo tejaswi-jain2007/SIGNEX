@@ -1,0 +1,255 @@
+{
+  "schema_version": "2.1",
+  "metadata": {
+    "input_filename": "real_sos_mayday_maritime.iq",
+    "input_filepath": "C:\\Users\\tejas\\AppData\\Local\\Temp\\tmpcjdoge6h\\real_sos_mayday_maritime.iq",
+    "input_sha256": "3778cd317a6afafb6f93ffb7267746b111133b394ca7b4f4b8f0c430bc5e1a76",
+    "input_size_bytes": 524288,
+    "timestamp_utc": "2026-09-19T08:33:36Z",
+    "operator_id": "SIGINT-AIRGAP-OPERATOR",
+    "model_version": "amc_resnet18_v1.0",
+    "execution_environment": "NTRO Air-Gapped Workstation"
+  },
+  "parameters": {
+    "estimated_fs": 1000000.0,
+    "symbol_rate": 125000.0,
+    "symbol_rate_confidence": 0.99,
+    "bandwidth_3db": 488.28125,
+    "occupied_bandwidth_99": 875000.0,
+    "center_frequency_offset": 362.8374317562457,
+    "snr_db": 45.0,
+    "noise_floor_db": 6.39983606338501,
+    "papr_db": 3.18837833404541,
+    "crest_factor": 1.4435070753097534,
+    "carrier_frequency_offset": 0.0,
+    "spectral_flatness": 0.14277876913547516,
+    "envelope_peak": 1.4435070753097534,
+    "envelope_mean": 0.9647245407104492,
+    "envelope_variance": 0.06930657476186752,
+    "burst_duty_cycle": 1.0,
+    "fs": 1000000.0,
+    "center_freq": 362.8374317562457,
+    "bandwidth_99pct": 875000.0,
+    "cfo_hz": 0.0
+  },
+  "modulation_classification": {
+    "predicted_class": "WBFM",
+    "confidence": 0.9957900643348694,
+    "is_low_confidence": false,
+    "is_ood": false,
+    "probabilities": {
+      "BPSK": 1.404080194333801e-05,
+      "QPSK": 8.527358659193851e-06,
+      "8-PSK": 9.807906462810934e-05,
+      "16-QAM": 0.0011851739836856723,
+      "64-QAM": 0.0007655046647414565,
+      "2-FSK": 0.00013251589552965015,
+      "4-FSK": 0.0019723339937627316,
+      "AM-DSB": 3.366961391293444e-05,
+      "WBFM": 0.9957900643348694
+    },
+    "features_used": "ResNet-18 1D CNN"
+  },
+  "demodulation": {
+    "modulation": "BPSK",
+    "total_bits": 8192,
+    "evm_pct": 9.993709564208984,
+    "carrier_phase_error": 0.030080311000347137
+  },
+  "decoding": {},
+  "extracted_frames": [
+    {
+      "sync_index": 0,
+      "transmitter_id": "0x09A8",
+      "sequence_number": 11048,
+      "payload_length": 1017,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "2409A82B28882B2408C92A690929C8E4",
+      "ascii_preview": "$..+(.+$..*i.).....jh...h(.*E.$."
+    },
+    {
+      "sync_index": 308,
+      "transmitter_id": "0x6371",
+      "sequence_number": 28003,
+      "payload_length": 978,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "736D5B75BF596D63696D6371BF7D57BF",
+      "ascii_preview": "sm[u.Ymcimcq.}W......c......u..."
+    },
+    {
+      "sync_index": 928,
+      "transmitter_id": "0x09A8",
+      "sequence_number": 11048,
+      "payload_length": 901,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "2409A82B28882B2408C92A690929C8E4",
+      "ascii_preview": "$..+(.+$..*i.).....jh...h(.*E.$."
+    },
+    {
+      "sync_index": 1236,
+      "transmitter_id": "0x6371",
+      "sequence_number": 28003,
+      "payload_length": 862,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "736D5B75BF596D63696D6371BF7D57BF",
+      "ascii_preview": "sm[u.Ymcimcq.}W......c......u..."
+    },
+    {
+      "sync_index": 1856,
+      "transmitter_id": "0x09A8",
+      "sequence_number": 11048,
+      "payload_length": 785,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "2409A82B28882B2408C92A690929C8E4",
+      "ascii_preview": "$..+(.+$..*i.).....jh...h(.*E.$."
+    },
+    {
+      "sync_index": 2164,
+      "transmitter_id": "0x6371",
+      "sequence_number": 28003,
+      "payload_length": 746,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "736D5B75BF596D63696D6371BF7D57BF",
+      "ascii_preview": "sm[u.Ymcimcq.}W......c......u..."
+    },
+    {
+      "sync_index": 2784,
+      "transmitter_id": "0x09A8",
+      "sequence_number": 11048,
+      "payload_length": 669,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "2409A82B28882B2408C92A690929C8E4",
+      "ascii_preview": "$..+(.+$..*i.).....jh...h(.*E.$."
+    },
+    {
+      "sync_index": 3092,
+      "transmitter_id": "0x6371",
+      "sequence_number": 28003,
+      "payload_length": 630,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "736D5B75BF596D63696D6371BF7D57BF",
+      "ascii_preview": "sm[u.Ymcimcq.}W......c......u..."
+    },
+    {
+      "sync_index": 3712,
+      "transmitter_id": "0x09A8",
+      "sequence_number": 11048,
+      "payload_length": 553,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "2409A82B28882B2408C92A690929C8E4",
+      "ascii_preview": "$..+(.+$..*i.).....jh...h(.*E.$."
+    },
+    {
+      "sync_index": 4020,
+      "transmitter_id": "0x6371",
+      "sequence_number": 28003,
+      "payload_length": 514,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "736D5B75BF596D63696D6371BF7D57BF",
+      "ascii_preview": "sm[u.Ymcimcq.}W......c......u..."
+    },
+    {
+      "sync_index": 4640,
+      "transmitter_id": "0x09A8",
+      "sequence_number": 11048,
+      "payload_length": 437,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "2409A82B28882B2408C92A690929C8E4",
+      "ascii_preview": "$..+(.+$..*i.).....jh...h(.*E.$."
+    },
+    {
+      "sync_index": 4948,
+      "transmitter_id": "0x6371",
+      "sequence_number": 28003,
+      "payload_length": 398,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "736D5B75BF596D63696D6371BF7D57BF",
+      "ascii_preview": "sm[u.Ymcimcq.}W......c......u..."
+    },
+    {
+      "sync_index": 5568,
+      "transmitter_id": "0x09A8",
+      "sequence_number": 11048,
+      "payload_length": 321,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "2409A82B28882B2408C92A690929C8E4",
+      "ascii_preview": "$..+(.+$..*i.).....jh...h(.*E.$."
+    },
+    {
+      "sync_index": 5876,
+      "transmitter_id": "0x6371",
+      "sequence_number": 28003,
+      "payload_length": 282,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "736D5B75BF596D63696D6371BF7D57BF",
+      "ascii_preview": "sm[u.Ymcimcq.}W......c......u..."
+    },
+    {
+      "sync_index": 6496,
+      "transmitter_id": "0x09A8",
+      "sequence_number": 11048,
+      "payload_length": 205,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "2409A82B28882B2408C92A690929C8E4",
+      "ascii_preview": "$..+(.+$..*i.).....jh...h(.*E.$."
+    },
+    {
+      "sync_index": 6804,
+      "transmitter_id": "0x6371",
+      "sequence_number": 28003,
+      "payload_length": 166,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "736D5B75BF596D63696D6371BF7D57BF",
+      "ascii_preview": "sm[u.Ymcimcq.}W......c......u..."
+    },
+    {
+      "sync_index": 7424,
+      "transmitter_id": "0x09A8",
+      "sequence_number": 11048,
+      "payload_length": 89,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "2409A82B28882B2408C92A690929C8E4",
+      "ascii_preview": "$..+(.+$..*i.).....jh...h(.*E.$."
+    },
+    {
+      "sync_index": 7732,
+      "transmitter_id": "0x6371",
+      "sequence_number": 28003,
+      "payload_length": 50,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "736D5B75BF596D63696D6371BF7D57BF",
+      "ascii_preview": "sm[u.Ymcimcq.}W......c......u..."
+    }
+  ],
+  "decoded_message": {
+    "has_message": true,
+    "primary_message": "MAYDAY MAYDAY FISHING VESSEL SAGAR-1 ENGINE FIRE SINKING AT 15.24N 73.81E 6 CREW ABOARD NEED IMMEDIATE RESCUE OVER",
+    "clean_text_stream": "MAYDAY MAYDAY FISHING VESSEL SAGAR-1 ENGINE FIRE SINKING AT 15.24N 73.81E 6 CREW ABOARD NEED IMMEDIATE RESCUE OVER MAYDAY MAYDAY FISHING VESSEL SAGAR-1 ENGINE FIRE SINKING AT 15.24N 73.81E 6 CREW ABOARD NEED IMMEDIATE RESCUE OVER MAYDAY MAYDAY FISHING VESSEL SAGAR-1 ENGINE FIRE SINKING AT 15.24N 73.81E 6 CREW ABOARD NEED IMMEDIATE RESCUE OVER MAYDAY MAYDAY FISHING VESSEL SAGAR-1 ENGINE FIRE SINKING AT 15.24N 73.81E 6 CREW ABOARD NEED IMMEDIATE RESCUE OVER MAYDAY MAYDAY FISHING VESSEL SAGAR-1 ENG",
+    "extracted_strings": [
+      "MAYDAY MAYDAY FISHING VESSEL SAGAR-1 ENGINE FIRE SINKING AT 15.24N 73.81E 6 CREW ABOARD NEED IMMEDIATE RESCUE OVER"
+    ],
+    "confidence_pct": 98.5,
+    "best_alignment": "Sync @ 0b | Normal",
+    "telemetry_tags": {},
+    "summary": "Decoded 169 words with 98.5% ASCII confidence via Sync @ 0b | Normal.",
+    "total_words_found": 169
+  }
+}

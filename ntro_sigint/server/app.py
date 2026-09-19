@@ -34,6 +34,7 @@ from ntro_sigint.ml.amc_classifier import ModulationClassifier, MODULATION_CLASS
 from ntro_sigint.dsp.demodulator import Demodulator
 from ntro_sigint.dsp.visualization import SignalVisualizer
 from ntro_sigint.correlation.correlator import BitstreamCorrelator, BARKER_13
+from ntro_sigint.decoding.text_decoder import TextPayloadDecoder
 from ntro_sigint.core.exporter import ResultStore, PDFReportGenerator
 from ntro_sigint.ml.dataset import SyntheticSignalGenerator
 
@@ -183,7 +184,15 @@ async def analyze_signal(
 
         # 6. Demodulation
         pred_mod = amc_dict["predicted_class"]
-        mod_scheme = pred_mod if pred_mod in ("BPSK", "QPSK", "8-PSK", "16-QAM", "64-QAM", "2-FSK") else "QPSK"
+        sidecar_mod = sig_data.metadata.get("modulation") if isinstance(sig_data.metadata, dict) else None
+        
+        # Prioritize verified sidecar modulation if available, else use predicted modulation
+        if sidecar_mod and sidecar_mod in ("BPSK", "QPSK", "8-PSK", "16-QAM", "64-QAM", "2-FSK"):
+            mod_scheme = sidecar_mod
+        elif pred_mod in ("BPSK", "QPSK", "8-PSK", "16-QAM", "64-QAM", "2-FSK"):
+            mod_scheme = pred_mod
+        else:
+            mod_scheme = "BPSK"
         
         if enable_demod:
             demod_out = Demodulator.demodulate(clean_samples, mod_type=mod_scheme, apply_carrier_sync=True)
@@ -202,10 +211,13 @@ async def analyze_signal(
 
         # 7. Telemetry Frame Correlation & Dissection
         frames_summary = []
+        extracted_frames = []
         if enable_sync and len(bits) > 0:
             extracted_frames = BitstreamCorrelator.extract_all_frames(bits, sync_word=BARKER_13, max_errors=1)
             for fr in extracted_frames[:50]:
                 hdr = fr.header if isinstance(fr.header, dict) else {}
+                # Decode frame payload text
+                p_text = "".join(chr(b) if 32 <= b <= 126 else "." for b in fr.payload_bytes)
                 frames_summary.append({
                     "sync_index": int(fr.sync_index),
                     "transmitter_id": f"0x{hdr.get('transmitter_id', 0):04X}",
@@ -213,10 +225,15 @@ async def analyze_signal(
                     "payload_length": len(fr.payload_bytes),
                     "crc_valid": bool(fr.crc_valid),
                     "fec_status": str(fr.fec_status),
-                    "hex_preview": fr.payload_bytes[:16].hex().upper()
+                    "hex_preview": fr.payload_bytes[:16].hex().upper(),
+                    "ascii_preview": p_text[:32]
                 })
 
-        # 8. Generate Visualizer Payloads for Web
+        # 8. Decode Plain English Intelligence Message & Telemetry Payload
+        frame_payload_list = [fr.payload_bytes for fr in extracted_frames] if len(extracted_frames) > 0 else []
+        text_decode_res = TextPayloadDecoder.decode_bitstream(bits, frame_payloads=frame_payload_list)
+
+        # 9. Generate Visualizer Payloads for Web
         # (a) Time-domain Waveforms (downsampled for responsive frontend rendering)
         n_disp = min(1000, len(clean_samples))
         step = max(1, len(clean_samples) // n_disp)
@@ -268,7 +285,7 @@ async def analyze_signal(
                     "ascii": ascii_str
                 })
 
-        # 9. Save Deliverables & Generate PDF Dossier
+        # 10. Save Deliverables & Generate PDF Dossier
         pdf_filename = f"{base_name}_dossier.pdf"
         json_filename = f"{base_name}_analysis.json"
         bin_filename = f"{base_name}_payload.bin"
@@ -283,6 +300,9 @@ async def analyze_signal(
             demod_stats=demod_dict,
             extracted_frames=frames_summary
         )
+        # Attach decoded text to report record
+        record["decoded_message"] = text_decode_res
+
         ResultStore.save_json(record, json_out_path)
         PDFReportGenerator.generate_dossier(record, pdf_out_path, constellation_samples=symbols)
 
@@ -300,12 +320,14 @@ async def analyze_signal(
             "classification": amc_dict,
             "demodulation": demod_dict,
             "frames": frames_summary,
+            "decoded_message": text_decode_res,
             "visualizations": {
                 "waveform": time_series,
                 "constellation": const_pts,
                 "spectrogram": spectrogram_data,
                 "psd": psd_data,
-                "hex_dump": hex_lines
+                "hex_dump": hex_lines,
+                "decoded_text": text_decode_res
             },
             "downloads": {
                 "pdf": f"/api/download/pdf/{pdf_filename}",

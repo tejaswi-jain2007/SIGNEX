@@ -1,0 +1,9 @@
+{
+  "sample_rate": 2000000.0,
+  "center_freq": 1000000.0,
+  "format": "wav",
+  "modulation": "BPSK",
+  "nominal_snr_db": 26.0,
+  "description": "Maritime VHF Distress & Mayday Emergency Call",
+  "embedded_message": "MAYDAY MAYDAY FISHING VESSEL SAGAR-1 ENGINE FIRE SINKING AT 15.24N 73.81E 6 CREW ABOARD NEED IMMEDIATE RESCUE OVER"
+}

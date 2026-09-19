@@ -1,8 +1,9 @@
 {
   "sample_rate": 2000000.0,
   "center_freq": 100000.0,
-  "format": "float32",
+  "format": "complex64",
   "modulation": "QPSK",
-  "nominal_snr_db": 25.0,
-  "description": "Clean QPSK Satellite Telemetry"
+  "nominal_snr_db": 28.0,
+  "description": "QPSK Satellite Telemetry & Sensor Packet",
+  "embedded_message": "SATELLITE TELEMETRY // SENSOR: IR-CAM-4 // TEMP: 24.5C // ALTITUDE: 420KM // STATUS: NOMINAL // NTRO SIGINT"
 }

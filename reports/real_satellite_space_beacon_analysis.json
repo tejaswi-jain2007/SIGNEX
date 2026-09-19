@@ -1,0 +1,274 @@
+{
+  "schema_version": "2.1",
+  "metadata": {
+    "input_filename": "real_satellite_space_beacon.iq",
+    "input_filepath": "C:\\Users\\tejas\\OneDrive\\Desktop\\SIH\\SIH\\data\\test_samples\\real_satellite_space_beacon.iq",
+    "input_sha256": "80be08caf819878b009027f954b48b77db79af61f2bcde7c470585c99431a85b",
+    "input_size_bytes": 524288,
+    "timestamp_utc": "2026-09-19T08:29:59Z",
+    "operator_id": "SIGINT-AIRGAP-OPERATOR",
+    "model_version": "amc_resnet18_v1.0",
+    "execution_environment": "NTRO Air-Gapped Workstation"
+  },
+  "parameters": {
+    "estimated_fs": 2000000.0,
+    "symbol_rate": 250000.0,
+    "symbol_rate_confidence": 0.99,
+    "bandwidth_3db": 1464.84375,
+    "occupied_bandwidth_99": 1746582.03125,
+    "center_frequency_offset": -2840.38896875842,
+    "snr_db": 45.0,
+    "noise_floor_db": 6.011552810668945,
+    "papr_db": 3.0129706859588623,
+    "crest_factor": 1.4146485328674316,
+    "carrier_frequency_offset": 0.0,
+    "spectral_flatness": 0.14572925865650177,
+    "envelope_peak": 1.4146485328674316,
+    "envelope_mean": 0.9731075763702393,
+    "envelope_variance": 0.05306166410446167,
+    "burst_duty_cycle": 1.0,
+    "fs": 2000000.0,
+    "center_freq": -2840.38896875842,
+    "bandwidth_99pct": 1746582.03125,
+    "cfo_hz": 0.0
+  },
+  "modulation_classification": {
+    "predicted_class": "WBFM",
+    "confidence": 0.9357433915138245,
+    "is_low_confidence": false,
+    "is_ood": false,
+    "probabilities": {
+      "BPSK": 0.0003818657423835248,
+      "QPSK": 0.00019353731477167457,
+      "8-PSK": 0.010121576488018036,
+      "16-QAM": 0.015865709632635117,
+      "64-QAM": 0.008833598345518112,
+      "2-FSK": 0.005482576787471771,
+      "4-FSK": 0.022541463375091553,
+      "AM-DSB": 0.0008363035740330815,
+      "WBFM": 0.9357433915138245
+    },
+    "features_used": "ResNet-18 1D CNN"
+  },
+  "demodulation": {
+    "modulation": "BPSK",
+    "total_bits": 8192,
+    "evm_pct": 9.99710750579834,
+    "carrier_phase_error": 0.03274856135249138
+  },
+  "decoding": {},
+  "extracted_frames": [
+    {
+      "sync_index": 0,
+      "transmitter_id": "0x092A",
+      "sequence_number": 27209,
+      "payload_length": 1017,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "682A88A989892A88A40848A82869E9C4",
+      "ascii_preview": "h*....*...H.(i......H*...K'D.G.."
+    },
+    {
+      "sync_index": 285,
+      "transmitter_id": "0x1F47",
+      "sequence_number": 11943,
+      "payload_length": 981,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "437EB2C2CEFAB77EBEFAC6EACF177F1B",
+      "ascii_preview": "C~.....~.........k.CC~......K;7G"
+    },
+    {
+      "sync_index": 872,
+      "transmitter_id": "0x092A",
+      "sequence_number": 27209,
+      "payload_length": 908,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "682A88A989892A88A40848A82869E9C4",
+      "ascii_preview": "h*....*...H.(i......H*...K'D.G.."
+    },
+    {
+      "sync_index": 1157,
+      "transmitter_id": "0x1F47",
+      "sequence_number": 11943,
+      "payload_length": 872,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "437EB2C2CEFAB77EBEFAC6EACF177F1B",
+      "ascii_preview": "C~.....~.........k.CC~......K;7G"
+    },
+    {
+      "sync_index": 1744,
+      "transmitter_id": "0x092A",
+      "sequence_number": 27209,
+      "payload_length": 799,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "682A88A989892A88A40848A82869E9C4",
+      "ascii_preview": "h*....*...H.(i......H*...K'D.G.."
+    },
+    {
+      "sync_index": 2029,
+      "transmitter_id": "0x1F47",
+      "sequence_number": 11943,
+      "payload_length": 763,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "437EB2C2CEFAB77EBEFAC6EACF177F1B",
+      "ascii_preview": "C~.....~.........k.CC~......K;7G"
+    },
+    {
+      "sync_index": 2616,
+      "transmitter_id": "0x092A",
+      "sequence_number": 27209,
+      "payload_length": 690,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "682A88A989892A88A40848A82869E9C4",
+      "ascii_preview": "h*....*...H.(i......H*...K'D.G.."
+    },
+    {
+      "sync_index": 2901,
+      "transmitter_id": "0x1F47",
+      "sequence_number": 11943,
+      "payload_length": 654,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "437EB2C2CEFAB77EBEFAC6EACF177F1B",
+      "ascii_preview": "C~.....~.........k.CC~......K;7G"
+    },
+    {
+      "sync_index": 3488,
+      "transmitter_id": "0x092A",
+      "sequence_number": 27209,
+      "payload_length": 581,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "682A88A989892A88A40848A82869E9C4",
+      "ascii_preview": "h*....*...H.(i......H*...K'D.G.."
+    },
+    {
+      "sync_index": 3773,
+      "transmitter_id": "0x1F47",
+      "sequence_number": 11943,
+      "payload_length": 545,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "437EB2C2CEFAB77EBEFAC6EACF177F1B",
+      "ascii_preview": "C~.....~.........k.CC~......K;7G"
+    },
+    {
+      "sync_index": 4360,
+      "transmitter_id": "0x092A",
+      "sequence_number": 27209,
+      "payload_length": 472,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "682A88A989892A88A40848A82869E9C4",
+      "ascii_preview": "h*....*...H.(i......H*...K'D.G.."
+    },
+    {
+      "sync_index": 4645,
+      "transmitter_id": "0x1F47",
+      "sequence_number": 11943,
+      "payload_length": 436,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "437EB2C2CEFAB77EBEFAC6EACF177F1B",
+      "ascii_preview": "C~.....~.........k.CC~......K;7G"
+    },
+    {
+      "sync_index": 5232,
+      "transmitter_id": "0x092A",
+      "sequence_number": 27209,
+      "payload_length": 363,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "682A88A989892A88A40848A82869E9C4",
+      "ascii_preview": "h*....*...H.(i......H*...K'D.G.."
+    },
+    {
+      "sync_index": 5517,
+      "transmitter_id": "0x1F47",
+      "sequence_number": 11943,
+      "payload_length": 327,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "437EB2C2CEFAB77EBEFAC6EACF177F1B",
+      "ascii_preview": "C~.....~.........k.CC~......K;7G"
+    },
+    {
+      "sync_index": 6104,
+      "transmitter_id": "0x092A",
+      "sequence_number": 27209,
+      "payload_length": 254,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "682A88A989892A88A40848A82869E9C4",
+      "ascii_preview": "h*....*...H.(i......H*...K'D.G.."
+    },
+    {
+      "sync_index": 6389,
+      "transmitter_id": "0x1F47",
+      "sequence_number": 11943,
+      "payload_length": 218,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "437EB2C2CEFAB77EBEFAC6EACF177F1B",
+      "ascii_preview": "C~.....~.........k.CC~......K;7G"
+    },
+    {
+      "sync_index": 6976,
+      "transmitter_id": "0x092A",
+      "sequence_number": 27209,
+      "payload_length": 145,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "682A88A989892A88A40848A82869E9C4",
+      "ascii_preview": "h*....*...H.(i......H*...K'D.G.."
+    },
+    {
+      "sync_index": 7261,
+      "transmitter_id": "0x1F47",
+      "sequence_number": 11943,
+      "payload_length": 109,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "437EB2C2CEFAB77EBEFAC6EACF177F1B",
+      "ascii_preview": "C~.....~.........k.CC~......K;7G"
+    },
+    {
+      "sync_index": 7848,
+      "transmitter_id": "0x092A",
+      "sequence_number": 27209,
+      "payload_length": 36,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "682A88A989892A88A40848A82869E9C4",
+      "ascii_preview": "h*....*...H.(i......H*...K'D.G.."
+    }
+  ],
+  "decoded_message": {
+    "has_message": true,
+    "primary_message": "ISRO SATELLITE BEACON // BATTERY: 28.4V // SOLAR PANEL: 98",
+    "clean_text_stream": "ISRO SATELLITE BEACON // BATTERY: 28.4V // SOLAR PANEL: 98% // TEMP: -12.5C // UPLINK LOCKED // NTRO SIGINT ISRO SATELLITE BEACON // BATTERY: 28.4V // SOLAR PANEL: 98% // TEMP: -12.5C // UPLINK LOCKED // NTRO SIGINT ISRO SATELLITE BEACON // BATTERY: 28.4V // SOLAR PANEL: 98% // TEMP: -12.5C // UPLINK LOCKED // NTRO SIGINT ISRO SATELLITE BEACON // BATTERY: 28.4V // SOLAR PANEL: 98% // TEMP: -12.5C // UPLINK LOCKED // NTRO SIGINT ISRO SATELLITE BEACON // BATTERY: 28.4V // SOLAR PANEL: 98% // TEMP:",
+    "extracted_strings": [
+      "ISRO SATELLITE BEACON // BATTERY: 28.4V // SOLAR PANEL: 98",
+      "TEMP: -12.5C // UPLINK LOCKED // NTRO SIGINT ISRO SATELLITE BEACON // BATTERY: 28.4V // SOLAR PANEL: 98",
+      "TEMP: -12.5C // UPLINK LOCKED // NTRO SIGINT ISRO SATELLITE BEACON // BATTERY: 28.4V // SOLAR PANEL: 98",
+      "TEMP: -12.5C // UPLINK LOCKED // NTRO SIGINT ISRO SATELLITE BEACON // BATTERY: 28.4V // SOLAR PANEL: 98",
+      "TEMP: -12.5C // UPLINK LOCKED // NTRO SIGINT ISRO SATELLITE BEACON // BATTERY: 28.4V // SOLAR PANEL: 98",
+      "TEMP: -12.5C // UPLINK LOCKED // NTRO SIGINT ISRO SATELLITE BEACON // BATTERY: 28.4V"
+    ],
+    "confidence_pct": 98.5,
+    "best_alignment": "Sync @ 3488b | Normal",
+    "telemetry_tags": {
+      "BATTERY": "28.4V",
+      "PANEL": "98",
+      "TEMP": "-12.5C"
+    },
+    "summary": "Decoded 86 words with 98.5% ASCII confidence via Sync @ 3488b | Normal.",
+    "total_words_found": 86
+  }
+}

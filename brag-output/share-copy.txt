@@ -1,0 +1,10 @@
+SIGNEX: Signal Extraction & Analysis Engine (NTRO ID 26147)
+
+The electromagnetic spectrum is loud, chaotic, and compromised. We built SIGNEX to decode it in milliseconds.
+
+- 20ms Autonomous Neural Classification (PyTorch ResNet-18)
+- 100% Air-Gapped Standalone Defense Architecture
+- Zero Outbound Network Egress
+- Cryptographic Forensic PDF Intelligence Dossiers
+
+Watch the official commercial trailer: https://github.com/tejaswi-jain2007/sightex

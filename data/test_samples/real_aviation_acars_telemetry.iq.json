@@ -1,0 +1,9 @@
+{
+  "sample_rate": 1000000.0,
+  "center_freq": 1000000.0,
+  "format": "complex64",
+  "modulation": "2-FSK",
+  "nominal_snr_db": 27.0,
+  "description": "Commercial Aircraft ACARS Engine & Route Telemetry",
+  "embedded_message": "ACARS AIR-INDIA 302 FLIGHT ROUTE BOM-DEL ALTITUDE 35000FT CABIN PRESSURE 11.2PSI FUEL 8500KG STATUS NOMINAL"
+}

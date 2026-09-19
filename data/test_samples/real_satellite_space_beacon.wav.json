@@ -1,0 +1,9 @@
+{
+  "sample_rate": 2000000.0,
+  "center_freq": 1000000.0,
+  "format": "wav",
+  "modulation": "BPSK",
+  "nominal_snr_db": 25.0,
+  "description": "ISRO Orbital Satellite Downlink & Power Telemetry",
+  "embedded_message": "ISRO SATELLITE BEACON // BATTERY: 28.4V // SOLAR PANEL: 98% // TEMP: -12.5C // UPLINK LOCKED // NTRO SIGINT"
+}

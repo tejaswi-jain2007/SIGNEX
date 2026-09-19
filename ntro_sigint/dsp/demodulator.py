@@ -89,16 +89,15 @@ class Demodulator:
     @staticmethod
     def demod_qpsk(symbols: np.ndarray) -> np.ndarray:
         """
-        QPSK slicer with Gray mapping:
+        QPSK Gray-coded slicer:
         Quadrant (+, +) -> 00
-        Quadrant (-, +) -> 01
+        Quadrant (-, +) -> 10
         Quadrant (-, -) -> 11
-        Quadrant (+, -) -> 10
+        Quadrant (+, -) -> 01
         """
-        b0 = (symbols.imag < 0.0).astype(np.uint8)
-        b1 = (symbols.real < 0.0).astype(np.uint8)
+        b0 = (symbols.real < 0.0).astype(np.uint8)
+        b1 = (symbols.imag < 0.0).astype(np.uint8)
 
-        # Gray mapping: bit0, bit1
         bits = np.empty(len(symbols) * 2, dtype=np.uint8)
         bits[0::2] = b0
         bits[1::2] = b1
@@ -195,44 +194,83 @@ class Demodulator:
         mod_type: str,
         apply_carrier_sync: bool = True
     ) -> DemodResult:
-        """Execute full demodulation pipeline for requested modulation."""
+        """
+        Execute full demodulation pipeline for requested modulation.
+        Includes automatic symbol timing recovery (SPS scanning) and carrier synchronization.
+        """
         mod_norm = mod_type.upper().replace("_", "-")
 
-        # Carrier recovery via Costas loop for PSK / QAM
-        if apply_carrier_sync and "FSK" not in mod_norm:
-            order = 2 if mod_norm == "BPSK" else 4
-            sync_symbols, phase_err = cls.costas_loop(samples, order=order)
-            phase_err_val = float(np.mean(np.abs(phase_err)))
-        else:
-            sync_symbols = samples
-            phase_err_val = 0.0
+        if len(samples) == 0:
+            return DemodResult(
+                modulation_type=mod_norm,
+                bits=np.array([], dtype=np.uint8),
+                symbols=np.array([], dtype=np.complex64),
+                num_symbols=0,
+                num_bits=0,
+                estimated_evm_pct=0.0,
+                carrier_phase_error=0.0
+            )
 
-        if mod_norm == "BPSK":
-            bits = cls.demod_bpsk(sync_symbols)
-        elif mod_norm == "QPSK":
-            bits = cls.demod_qpsk(sync_symbols)
-        elif mod_norm in ("8-PSK", "8PSK"):
-            bits = cls.demod_8psk(sync_symbols)
-        elif mod_norm in ("16-QAM", "16QAM"):
-            bits = cls.demod_16qam(sync_symbols)
-        elif mod_norm in ("64-QAM", "64QAM"):
-            bits = cls.demod_64qam(sync_symbols)
-        elif "FSK" in mod_norm:
-            bits = cls.demod_2fsk(samples)
-            sync_symbols = samples
-        else:
-            # Fallback to QPSK
-            bits = cls.demod_qpsk(sync_symbols)
+        # 1. Symbol timing recovery / SPS candidate downsampling
+        best_symbols = samples
+        best_bits = np.array([], dtype=np.uint8)
+        best_score = -1.0
+        best_phase_err = 0.0
+
+        # Scan SPS candidates [8, 4, 2, 1]
+        sps_candidates = [8, 4, 2, 1] if len(samples) >= 64 else [1]
+
+        for sps in sps_candidates:
+            offsets = range(0, sps) if sps > 1 else [0]
+            for off in offsets:
+                sub_syms = samples[off::sps]
+                if len(sub_syms) < 8:
+                    continue
+
+                # Carrier recovery via Costas loop for PSK / QAM
+                if apply_carrier_sync and "FSK" not in mod_norm:
+                    order = 2 if mod_norm == "BPSK" else 4
+                    sync_syms, phase_err = cls.costas_loop(sub_syms, order=order)
+                    phase_err_val = float(np.mean(np.abs(phase_err))) if len(phase_err) > 0 else 0.0
+                else:
+                    sync_syms = sub_syms
+                    phase_err_val = 0.0
+
+                # Slice bits
+                if mod_norm == "BPSK":
+                    candidate_bits = cls.demod_bpsk(sync_syms)
+                elif mod_norm == "QPSK":
+                    candidate_bits = cls.demod_qpsk(sync_syms)
+                elif mod_norm in ("8-PSK", "8PSK"):
+                    candidate_bits = cls.demod_8psk(sync_syms)
+                elif mod_norm in ("16-QAM", "16QAM"):
+                    candidate_bits = cls.demod_16qam(sync_syms)
+                elif mod_norm in ("64-QAM", "64QAM"):
+                    candidate_bits = cls.demod_64qam(sync_syms)
+                elif "FSK" in mod_norm:
+                    candidate_bits = cls.demod_2fsk(samples, sps=sps)
+                    sync_syms = samples
+                else:
+                    candidate_bits = cls.demod_qpsk(sync_syms)
+
+                # Prioritize standard 8 SPS if variance is clean
+                var_metric = float(np.var(np.abs(sync_syms)))
+                score = (100.0 if sps == 8 else 50.0) / (var_metric + 0.1)
+                if score > best_score:
+                    best_score = score
+                    best_symbols = sync_syms
+                    best_bits = candidate_bits
+                    best_phase_err = phase_err_val
 
         # Estimate EVM %
-        evm_pct = float(np.std(sync_symbols) * 10.0)
+        evm_pct = float(np.std(best_symbols) * 10.0) if len(best_symbols) > 0 else 0.0
 
         return DemodResult(
             modulation_type=mod_norm,
-            bits=bits,
-            symbols=sync_symbols,
-            num_symbols=len(sync_symbols),
-            num_bits=len(bits),
+            bits=best_bits,
+            symbols=best_symbols,
+            num_symbols=len(best_symbols),
+            num_bits=len(best_bits),
             estimated_evm_pct=evm_pct,
-            carrier_phase_error=phase_err_val
+            carrier_phase_error=best_phase_err
         )

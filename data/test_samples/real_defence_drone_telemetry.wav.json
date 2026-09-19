@@ -1,0 +1,9 @@
+{
+  "sample_rate": 2000000.0,
+  "center_freq": 1000000.0,
+  "format": "wav",
+  "modulation": "16-QAM",
+  "nominal_snr_db": 30.0,
+  "description": "Defence Drone Target Acquisition & Telemetry Stream",
+  "embedded_message": "DRONE RECON UAV-9 // TARGET VEHICLE CONVOY TRACKED // SPEED: 65 KM/H // HEADING: 180 // NTRO DEFENCE"
+}

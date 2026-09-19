@@ -1,0 +1,584 @@
+{
+  "schema_version": "2.1",
+  "metadata": {
+    "input_filename": "real_defence_drone_telemetry.iq",
+    "input_filepath": "C:\\Users\\tejas\\OneDrive\\Desktop\\SIH\\SIH\\data\\test_samples\\real_defence_drone_telemetry.iq",
+    "input_sha256": "608e422797cff2bd305e13992f642a4dbe40b9e02ca625a177cc40910609d7e0",
+    "input_size_bytes": 524288,
+    "timestamp_utc": "2026-09-19T08:30:46Z",
+    "operator_id": "SIGINT-AIRGAP-OPERATOR",
+    "model_version": "amc_resnet18_v1.0",
+    "execution_environment": "NTRO Air-Gapped Workstation"
+  },
+  "parameters": {
+    "estimated_fs": 2000000.0,
+    "symbol_rate": 250000.0,
+    "symbol_rate_confidence": 0.99,
+    "bandwidth_3db": 1464.84375,
+    "occupied_bandwidth_99": 1742675.78125,
+    "center_frequency_offset": 28012.592246381675,
+    "snr_db": 0.04156898707151413,
+    "noise_floor_db": 7.01568078994751,
+    "papr_db": 6.864285469055176,
+    "crest_factor": 2.2040135860443115,
+    "carrier_frequency_offset": 0.0,
+    "spectral_flatness": 0.12810170650482178,
+    "envelope_peak": 2.2040135860443115,
+    "envelope_mean": 0.8961266875267029,
+    "envelope_variance": 0.19695696234703064,
+    "burst_duty_cycle": 0.8526153564453125,
+    "fs": 2000000.0,
+    "center_freq": 28012.592246381675,
+    "bandwidth_99pct": 1742675.78125,
+    "cfo_hz": 0.0
+  },
+  "modulation_classification": {
+    "predicted_class": "2-FSK",
+    "confidence": 0.72,
+    "is_low_confidence": true,
+    "is_ood": false,
+    "probabilities": {
+      "BPSK": 6.536772789722534e-10,
+      "QPSK": 4.332013858743267e-09,
+      "8-PSK": 2.7814188729990974e-09,
+      "16-QAM": 4.674625131428911e-09,
+      "64-QAM": 1.094765593734337e-07,
+      "2-FSK": 0.7299935221672058,
+      "4-FSK": 1.267720199393807e-05,
+      "AM-DSB": 4.526953944150591e-06,
+      "WBFM": 0.26998916268348694
+    },
+    "features_used": "ResNet-18 1D CNN"
+  },
+  "demodulation": {
+    "modulation": "16-QAM",
+    "total_bits": 32768,
+    "evm_pct": 9.995366096496582,
+    "carrier_phase_error": 0.39887866377830505
+  },
+  "decoding": {},
+  "extracted_frames": [
+    {
+      "sync_index": 213,
+      "transmitter_id": "0x7093",
+      "sequence_number": 23351,
+      "payload_length": 4062,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "0F6734D34F3B7B5B7B68D3774F570F6B",
+      "ascii_preview": ".g4.O;{[{h.wOW.kwt....OSw74....."
+    },
+    {
+      "sync_index": 523,
+      "transmitter_id": "0x34D5",
+      "sequence_number": 13515,
+      "payload_length": 4023,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "DB36323E33343138C5DBCEC6CBDBD5D5",
+      "ascii_preview": ".62>3418.........5#-5.32921<2TV3"
+    },
+    {
+      "sync_index": 715,
+      "transmitter_id": "0x232D",
+      "sequence_number": 13787,
+      "payload_length": 3999,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "3932313C325456332D353132DB2D323C",
+      "ascii_preview": "921<2TV3-512.-2<51.\">)......#:-8"
+    },
+    {
+      "sync_index": 1029,
+      "transmitter_id": "0x7093",
+      "sequence_number": 23351,
+      "payload_length": 3960,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "4F2774930F7B3B5B3B6893774B570F2B",
+      "ascii_preview": "O't..{;[;h.wKW.+7p....OS7w0....."
+    },
+    {
+      "sync_index": 1339,
+      "transmitter_id": "0x34D5",
+      "sequence_number": 13531,
+      "payload_length": 3921,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "DB34323A32252128C5DBCEC4CBDBD1D5",
+      "ascii_preview": ".42:2%!(.........1#-5.32921<2TV3"
+    },
+    {
+      "sync_index": 1845,
+      "transmitter_id": "0x7093",
+      "sequence_number": 23351,
+      "payload_length": 3858,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "4F6734934F6B3B5B7B68D3774B170F2B",
+      "ascii_preview": "Og4.Ok;[{h.wK..+w0....OS770....."
+    },
+    {
+      "sync_index": 2155,
+      "transmitter_id": "0x34D5",
+      "sequence_number": 13531,
+      "payload_length": 3819,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "DB26323E33343138C5DBCEC6CFDBD5D5",
+      "ascii_preview": ".&2>3418.........5#-5.32921<2TV3"
+    },
+    {
+      "sync_index": 2347,
+      "transmitter_id": "0x232D",
+      "sequence_number": 13787,
+      "payload_length": 3795,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "3932313C325456332D353132DB2D323C",
+      "ascii_preview": "921<2TV3-512.-2<51.\">)......#>-8"
+    },
+    {
+      "sync_index": 2661,
+      "transmitter_id": "0x7093",
+      "sequence_number": 23351,
+      "payload_length": 3756,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "0F2734D34F7B3B5B7B68D3774F174F6B",
+      "ascii_preview": ".'4.O{;[{h.wO.Okwp....OS77p....."
+    },
+    {
+      "sync_index": 2874,
+      "transmitter_id": "0x1269",
+      "sequence_number": 60006,
+      "payload_length": 3730,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "1D121B1E92656595649215151264E6E0",
+      "ascii_preview": ".....ee.d....d...e.c.........eni"
+    },
+    {
+      "sync_index": 2971,
+      "transmitter_id": "0x34D5",
+      "sequence_number": 14043,
+      "payload_length": 3717,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "DB36323E33343138C5DBCEC6CBDBD5D5",
+      "ascii_preview": ".62>3418.........5#-5.32921<2TV3"
+    },
+    {
+      "sync_index": 3163,
+      "transmitter_id": "0x232D",
+      "sequence_number": 13791,
+      "payload_length": 3693,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "3932313C325456332D353132DB2D323C",
+      "ascii_preview": "921<2TV3-512.-2<51.\">)......\">-8"
+    },
+    {
+      "sync_index": 3477,
+      "transmitter_id": "0x7093",
+      "sequence_number": 23351,
+      "payload_length": 3654,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "4F2774934F3B7B5B7B68D3734B074F2B",
+      "ascii_preview": "O't.O;{[{h.sK.O+wt....OS770....."
+    },
+    {
+      "sync_index": 3787,
+      "transmitter_id": "0x34D5",
+      "sequence_number": 14043,
+      "payload_length": 3615,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "DB36323E33343138C5DBCEC6CBDFD5D5",
+      "ascii_preview": ".62>3418.........5#-5.32921<2TV3"
+    },
+    {
+      "sync_index": 3979,
+      "transmitter_id": "0x232D",
+      "sequence_number": 13791,
+      "payload_length": 3591,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "3932313C325456332D353132DB2D323C",
+      "ascii_preview": "921<2TV3-512.-2<51.\">)......#>-8"
+    },
+    {
+      "sync_index": 4293,
+      "transmitter_id": "0x7093",
+      "sequence_number": 23415,
+      "payload_length": 3552,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "4F2774D34F2B3B5B3B6893774F174F6B",
+      "ascii_preview": "O't.O+;[;h.wO.Okw0....OS770....."
+    },
+    {
+      "sync_index": 4506,
+      "transmitter_id": "0x1269",
+      "sequence_number": 60006,
+      "payload_length": 3526,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "1D121B1E92656595659215151264E6E0",
+      "ascii_preview": ".....ee.e....d...e.c.........eni"
+    },
+    {
+      "sync_index": 4603,
+      "transmitter_id": "0x34D5",
+      "sequence_number": 13531,
+      "payload_length": 3513,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "DB36323E33343138C5DBCEC6CBDBD5D5",
+      "ascii_preview": ".62>3418.........5#-5.32921<2TV3"
+    },
+    {
+      "sync_index": 4795,
+      "transmitter_id": "0x232D",
+      "sequence_number": 13787,
+      "payload_length": 3489,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "3932313C325456332D353132DB2D323C",
+      "ascii_preview": "921<2TV3-512.-2<51.\">)......#>-8"
+    },
+    {
+      "sync_index": 5109,
+      "transmitter_id": "0x7493",
+      "sequence_number": 23351,
+      "payload_length": 3450,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "0F6734D30F2B7B5B3B68D3774B574F6B",
+      "ascii_preview": ".g4..+{[;h.wKWOk7p....OS7w4....."
+    },
+    {
+      "sync_index": 5419,
+      "transmitter_id": "0x24D5",
+      "sequence_number": 13515,
+      "payload_length": 3411,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "DB36323E33343128C5DBCEC6CBDFD5D5",
+      "ascii_preview": ".62>341(.........5#-5.32921<2TV3"
+    },
+    {
+      "sync_index": 5611,
+      "transmitter_id": "0x232D",
+      "sequence_number": 13787,
+      "payload_length": 3387,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "3932313C325456332D353132DB2D323C",
+      "ascii_preview": "921<2TV3-512.-2<51.\">)......#>-8"
+    },
+    {
+      "sync_index": 5925,
+      "transmitter_id": "0x7493",
+      "sequence_number": 23351,
+      "payload_length": 3348,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "4F6774930F6B7B5B7B68D3774F570F6B",
+      "ascii_preview": "Ogt..k{[{h.wOW.k7t....OS770....."
+    },
+    {
+      "sync_index": 6235,
+      "transmitter_id": "0x34D5",
+      "sequence_number": 14043,
+      "payload_length": 3309,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "DB36323E33343138C5DBCEC6CFDFD5D5",
+      "ascii_preview": ".62>3418.........5#-5.32921<2TV3"
+    },
+    {
+      "sync_index": 6427,
+      "transmitter_id": "0x232D",
+      "sequence_number": 13791,
+      "payload_length": 3285,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "3932313C325456332D353532DB2D323C",
+      "ascii_preview": "921<2TV3-552.-2<51.\">)......#>-8"
+    },
+    {
+      "sync_index": 6741,
+      "transmitter_id": "0x7493",
+      "sequence_number": 23351,
+      "payload_length": 3246,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "4F2774D34F7B3B5B7B6893734F574F6B",
+      "ascii_preview": "O't.O{;[{h.sOWOkwt....OS770....."
+    },
+    {
+      "sync_index": 7051,
+      "transmitter_id": "0x34D1",
+      "sequence_number": 13531,
+      "payload_length": 3207,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "DB34223E32352138C5CBCEC4CBDBD1D5",
+      "ascii_preview": ".4\">25!8.........1#-5.3292!<2TT\""
+    },
+    {
+      "sync_index": 7557,
+      "transmitter_id": "0x7093",
+      "sequence_number": 23351,
+      "payload_length": 3144,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "4F6734D34F7B3B5B7B68D3734B070F2B",
+      "ascii_preview": "Og4.O{;[{h.sK..+70....OS7wp....."
+    },
+    {
+      "sync_index": 7867,
+      "transmitter_id": "0x34D5",
+      "sequence_number": 14043,
+      "payload_length": 3105,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "DB36323E33343138C5DBCEC6CFDBD5D5",
+      "ascii_preview": ".62>3418.........5#-5.32921<2TV3"
+    },
+    {
+      "sync_index": 8059,
+      "transmitter_id": "0x232D",
+      "sequence_number": 13791,
+      "payload_length": 3081,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "3932313C325456332D353132DB2D323C",
+      "ascii_preview": "921<2TV3-512.-2<51.\">)......#>-8"
+    },
+    {
+      "sync_index": 8373,
+      "transmitter_id": "0x7093",
+      "sequence_number": 23351,
+      "payload_length": 3042,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "4F6774D30F6B3B5B7B68D3734F170F6B",
+      "ascii_preview": "Ogt..k;[{h.sO..k70....OS77t....."
+    },
+    {
+      "sync_index": 8586,
+      "transmitter_id": "0x1269",
+      "sequence_number": 60006,
+      "payload_length": 3016,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "9D121B1E92656595649215151264E6E0",
+      "ascii_preview": ".....ee.d....d...e.c.........eni"
+    },
+    {
+      "sync_index": 8683,
+      "transmitter_id": "0x34D5",
+      "sequence_number": 14043,
+      "payload_length": 3003,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "DB36323E33343138C5DBCEC6CFDBD5D5",
+      "ascii_preview": ".62>3418.........5#-5.32921<2TV3"
+    },
+    {
+      "sync_index": 8875,
+      "transmitter_id": "0x232D",
+      "sequence_number": 13787,
+      "payload_length": 2979,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "3932313C325456332D353132DB2D323C",
+      "ascii_preview": "921<2TV3-512.-2<51.\">)......#>-8"
+    },
+    {
+      "sync_index": 9189,
+      "transmitter_id": "0x7093",
+      "sequence_number": 23351,
+      "payload_length": 2940,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "4F6774934F7B7B5B2B68D3734F470F6B",
+      "ascii_preview": "Ogt.O{{[+h.sOG.k7t....OS770....."
+    },
+    {
+      "sync_index": 9499,
+      "transmitter_id": "0x24D5",
+      "sequence_number": 14043,
+      "payload_length": 2901,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "DB36323E33343138C5DBCEC6CBDFD5D5",
+      "ascii_preview": ".62>3418.........5#-5.32921<2TV3"
+    },
+    {
+      "sync_index": 9691,
+      "transmitter_id": "0x232D",
+      "sequence_number": 13791,
+      "payload_length": 2877,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "3932313C325456332D353132DB2D323C",
+      "ascii_preview": "921<2TV3-512.-2<51.\":)......#>-8"
+    },
+    {
+      "sync_index": 10005,
+      "transmitter_id": "0x7093",
+      "sequence_number": 23351,
+      "payload_length": 2838,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "0F6774D34F7B7B5B3B6893774F474F6B",
+      "ascii_preview": ".gt.O{{[;h.wOGOkw4....OS770....."
+    },
+    {
+      "sync_index": 10315,
+      "transmitter_id": "0x34D5",
+      "sequence_number": 14043,
+      "payload_length": 2799,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "DB36323E33343138C5DBCEC6CFDBD5D5",
+      "ascii_preview": ".62>3418.........5#-5.32921<2TV3"
+    },
+    {
+      "sync_index": 10507,
+      "transmitter_id": "0x232D",
+      "sequence_number": 13791,
+      "payload_length": 2775,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "3932313C325456332D353132DB2D323C",
+      "ascii_preview": "921<2TV3-512.-2<51.\">)......#>-8"
+    },
+    {
+      "sync_index": 10821,
+      "transmitter_id": "0x7093",
+      "sequence_number": 23415,
+      "payload_length": 2736,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "4F2734930F3B3B5B2B6C93734B074F6B",
+      "ascii_preview": "O'4..;;[+l.sK.Ok70....OS770....."
+    },
+    {
+      "sync_index": 11131,
+      "transmitter_id": "0x34D5",
+      "sequence_number": 14043,
+      "payload_length": 2697,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "DB36323E33343138C5DBCEC6CFDBD4D5",
+      "ascii_preview": ".62>3418.........5#-5.32921<2TV3"
+    },
+    {
+      "sync_index": 11323,
+      "transmitter_id": "0x232D",
+      "sequence_number": 13791,
+      "payload_length": 2673,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "3932313C325456332D353132DB2D323C",
+      "ascii_preview": "921<2TV3-512.-2<51.\">)......#>-8"
+    },
+    {
+      "sync_index": 11637,
+      "transmitter_id": "0x7093",
+      "sequence_number": 23351,
+      "payload_length": 2634,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "0F2774D30F3B7B5B6B68D3774F174F2B",
+      "ascii_preview": ".'t..;{[kh.wO.O+wp....OS770....."
+    },
+    {
+      "sync_index": 11947,
+      "transmitter_id": "0x34D5",
+      "sequence_number": 14043,
+      "payload_length": 2595,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "DB36323E33343138C5DBCEC6CFDBD5D5",
+      "ascii_preview": ".62>3418.........5#-5.32921,2TV2"
+    },
+    {
+      "sync_index": 12139,
+      "transmitter_id": "0x232D",
+      "sequence_number": 13787,
+      "payload_length": 2571,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "3932312C325456322D353132DF2D323C",
+      "ascii_preview": "921,2TV2-512.-2<51.\">)......#>-8"
+    },
+    {
+      "sync_index": 12453,
+      "transmitter_id": "0x7093",
+      "sequence_number": 23351,
+      "payload_length": 2532,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "4F6734D34F3B7B5B3B6893734B570F2B",
+      "ascii_preview": "Og4.O;{[;h.sKW.+wt....OS770....."
+    },
+    {
+      "sync_index": 12763,
+      "transmitter_id": "0x34D5",
+      "sequence_number": 9947,
+      "payload_length": 2493,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "DB36323E33343138C5DBCEC6CFDBD5D5",
+      "ascii_preview": ".62>3418.........5#-5.32921<2TV3"
+    },
+    {
+      "sync_index": 12955,
+      "transmitter_id": "0x232D",
+      "sequence_number": 13787,
+      "payload_length": 2469,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "3932313C325456332D353132DB2D323C",
+      "ascii_preview": "921<2TV3-512.-2<51.\">)......#>-8"
+    },
+    {
+      "sync_index": 13269,
+      "transmitter_id": "0x7093",
+      "sequence_number": 23415,
+      "payload_length": 2430,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "4F6734930F2B3B5B3B68D3774F170F6B",
+      "ascii_preview": "Og4..+;[;h.wO..kwp....OS770....."
+    }
+  ],
+  "decoded_message": {
+    "has_message": true,
+    "primary_message": "ee d d e c enie ff f a iegf if g n n c kf i i",
+    "clean_text_stream": "ee d d e c enie ff f a iegf if g n n c kf i i okom ni` n i f ee d d e c enie ff f a iegf if g n n` c kn i i gkgm n n i f ee e d e c enie ff f a iegf if g n n` c kf a a okgm n j f i f em e d e k enie ff f a iegf if g n n` c kf i a okom n f i f ee d d e c enie ff f a ieef if g n n` c kf i i gkom ni n i f ee e e oc gnie ff f a mof if g n n k kf i i gkom ni` f i f ee d d e c enie ff f a iegf if g n n` c kf i a gkom ni f i f ee d d e c enie ff f a iegf if g n n` c kf i i okem ni f i f em d d e c enie",
+    "extracted_strings": [
+      "ee d d e c enie ff f a iegf if g n n c kf i i",
+      "n i f ee d d e c enie ff f a iegf if",
+      "c kn i i gkgm n n i f ee e d e c enie ff f a iegf if",
+      "c kf a a okgm n j f i f em e d e k enie ff f a iegf if",
+      "c kf i a okom n f i f ee d d e c enie ff f a ieef if",
+      "c kf i i gkom ni n i f ee e e oc gnie ff f a mof if g n n k kf i i",
+      "f i f ee d d e c enie ff f a iegf if",
+      "c kf i a gkom ni f i f ee d d e c enie ff f a iegf if",
+      "c kf i i okem ni f i f em d d e c enie ff f a iegf if",
+      "c kf a i okgm n n i f ee d d e c enie ff f a iegf if"
+    ],
+    "confidence_pct": 98.5,
+    "best_alignment": "Frame Sync",
+    "telemetry_tags": {},
+    "summary": "Decoded 424 words with 98.5% ASCII confidence via Frame Sync.",
+    "total_words_found": 424
+  }
+}

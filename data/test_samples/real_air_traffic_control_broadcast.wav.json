@@ -1,0 +1,9 @@
+{
+  "sample_rate": 2000000.0,
+  "center_freq": 1000000.0,
+  "format": "wav",
+  "modulation": "QPSK",
+  "nominal_snr_db": 28.0,
+  "description": "Civil Air Traffic Control Digital Uplink",
+  "embedded_message": "ATC DELHI TOWER TO FLIGHT VT-XYZ WIND 270 AT 12 KNOTS RUNWAY 28 LEFT CLEARED FOR ILS APPROACH"
+}

@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920, height=1080">
+  <title>SIGNEX — Defense-Grade SIGINT Workstation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&family=Cabinet+Grotesk:wght@800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <style>
+    :root {
+      --bg: #030508;
+      --cyan: #00f0ff;
+      --amber: #ffaa00;
+      --green: #00ff88;
+      --red: #ff2a55;
+      --white: #ffffff;
+      --slate: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 1920px;
+      height: 1080px;
+      background: #000000;
+      color: var(--white);
+      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      overflow: hidden;
+      user-select: none;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    #stage-container {
+      position: relative;
+      width: 1920px;
+      height: 1080px;
+      background: var(--bg);
+      overflow: hidden;
+    }
+
+    /* Anamorphic Aspect Bars */
+    .cinema-letterbox-top, .cinema-letterbox-bottom {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 48px;
+      background: #000000;
+      z-index: 50;
+      pointer-events: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .cinema-letterbox-bottom {
+      top: auto;
+      bottom: 0;
+      border-bottom: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* CRT Scanlines */
+    .crt-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+      background-size: 100% 4px, 4px 100%;
+      pointer-events: none;
+      z-index: 45;
+      opacity: 0.5;
+    }
+
+    /* DSP Canvas */
+    #dsp-canvas {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      z-index: 2;
+    }
+
+    /* Tactical HUD Corner Elements */
+    .hud-corner {
+      position: absolute;
+      width: 36px;
+      height: 36px;
+      border: 2px solid rgba(0, 240, 255, 0.5);
+      z-index: 40;
+      pointer-events: none;
+    }
+    .hud-tl { top: 68px; left: 68px; border-right: none; border-bottom: none; }
+    .hud-tr { top: 68px; right: 68px; border-left: none; border-bottom: none; }
+    .hud-bl { bottom: 68px; left: 68px; border-right: none; border-top: none; }
+    .hud-br { bottom: 68px; right: 68px; border-left: none; border-top: none; }
+
+    .hud-header {
+      position: absolute;
+      top: 64px;
+      left: 120px;
+      right: 120px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: rgba(255, 255, 255, 0.7);
+      z-index: 40;
+      pointer-events: none;
+    }
+
+    .hud-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(0, 240, 255, 0.12);
+      border: 1px solid rgba(0, 240, 255, 0.4);
+      padding: 6px 14px;
+      border-radius: 4px;
+      color: var(--cyan);
+    }
+    .hud-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--cyan);
+    }
+
+    .hud-footer {
+      position: absolute;
+      bottom: 64px;
+      left: 120px;
+      right: 120px;
+      display: flex;
+      justify-content: space-between;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.5);
+      letter-spacing: 0.12em;
+      z-index: 40;
+      pointer-events: none;
+    }
+
+    /* Strobe flash */
+    .strobe-flash {
+      position: absolute;
+      inset: 0;
+      background: #FFFFFF;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 60;
+    }
+
+    /* Scenes */
+    .scene {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 140px;
+      opacity: 0;
+      z-index: 20;
+      pointer-events: none;
+      text-align: center;
+    }
+
+    /* Aggressive Kinetic Typography */
+    .tagline-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .tagline-sub::before, .tagline-sub::after {
+      content: "";
+      width: 30px;
+      height: 1px;
+      background: var(--cyan);
+    }
+
+    .massive-title {
+      font-size: 88px;
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      text-shadow: 0 10px 40px rgba(0,0,0,0.9);
+      max-width: 1400px;
+    }
+
+    .massive-title .glow-cyan {
+      color: var(--cyan);
+      text-shadow: 0 0 45px rgba(0, 240, 255, 0.7);
+    }
+
+    .massive-title .glow-red {
+      color: var(--red);
+      text-shadow: 0 0 45px rgba(255, 42, 85, 0.7);
+    }
+
+    .massive-title .glow-amber {
+      color: var(--amber);
+      text-shadow: 0 0 45px rgba(255, 170, 0, 0.7);
+    }
+
+    .sub-lead {
+      font-size: 24px;
+      font-weight: 400;
+      color: #cbd5e1;
+      max-width: 1000px;
+      margin-top: 28px;
+      line-height: 1.5;
+    }
+
+    /* Stat strip */
+    .stat-strip {
+      display: flex;
+      gap: 32px;
+      margin-top: 48px;
+    }
+
+    .stat-cell {
+      background: rgba(10, 16, 26, 0.9);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      padding: 24px 40px;
+      border-radius: 10px;
+      text-align: left;
+      min-width: 240px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+      position: relative;
+    }
+
+    .stat-cell::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--cyan);
+    }
+
+    .stat-cell.red-accent::before { background: var(--red); }
+    .stat-cell.amber-accent::before { background: var(--amber); }
+    .stat-cell.green-accent::before { background: var(--green); }
+
+    .stat-cell .number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 48px;
+      font-weight: 800;
+      color: #FFFFFF;
+      line-height: 1;
+    }
+
+    .stat-cell .metric-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: #64748b;
+      text-transform: uppercase;
+      margin-top: 10px;
+    }
+
+    /* Logo Frame (Zero distortion, 100% aspect ratio preserve) */
+    .brand-hero-logo {
+      height: 120px;
+      width: auto;
+      max-width: 380px;
+      object-fit: contain;
+      background: #FFFFFF;
+      padding: 10px 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 80px rgba(0, 240, 255, 0.4), 0 30px 60px rgba(0,0,0,0.9);
+      margin-bottom: 32px;
+    }
+
+    /* Bottom Timeline Bar */
+    .master-progress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--cyan), #3b82f6, var(--amber));
+      width: 0%;
+      z-index: 55;
+      box-shadow: 0 0 20px var(--cyan);
+    }
+  </style>
+</head>
+<body>
+
+  <div 
+    id="stage-container"
+    data-composition-id="main"
+    data-start="0"
+    data-duration="18"
+    data-width="1920"
+    data-height="1080"
+  >
+    <div class="cinema-letterbox-top"></div>
+    <div class="cinema-letterbox-bottom"></div>
+    <div class="crt-overlay"></div>
+    <div class="strobe-flash" id="flash-effect"></div>
+    <canvas id="dsp-canvas" width="1920" height="1080"></canvas>
+    <div class="master-progress" id="progress-bar"></div>
+
+    <!-- HUD Brackets -->
+    <div class="hud-corner hud-tl"></div>
+    <div class="hud-corner hud-tr"></div>
+    <div class="hud-corner hud-bl"></div>
+    <div class="hud-corner hud-br"></div>
+
+    <!-- Header Telemetry -->
+    <div class="hud-header">
+      <div class="hud-badge">
+        <span class="hud-dot"></span> LIVE // RF CAPTURE
+      </div>
+      <div>LAT 28°36'44"N | LON 77°13'48"E</div>
+      <div>CLASSIFICATION: NTRO ID 26147</div>
+    </div>
+
+    <!-- Footer Telemetry -->
+    <div class="hud-footer">
+      <span id="scene-clock">TIME: 00.00s</span>
+      <span id="hud-status">STATUS: SPECTRUM ACQUISITION</span>
+      <span>SYSTEM: SIGNEX AIR-GAP V1.0</span>
+    </div>
+
+    <!-- ================= SCENE 1: THE HOSTILE SPECTRUM (0.0s - 3.6s) ================= -->
+    <div class="scene" id="scene-1" data-start="0" data-duration="3.6">
+      <div class="tagline-sub">RF SPECTRUM HOSTILITY</div>
+      <h1 class="massive-title">
+        THE SPECTRUM IS <br><span class="glow-red">BLINDING & HOSTILE.</span>
+      </h1>
+      <p class="sub-lead">
+        Billions of electromagnetic transmissions collide every microsecond. Buried inside the noise are covert adversary signals.
+      </p>
+    </div>
+
+    <!-- ================= SCENE 2: EXTREME SPEED (3.6s - 7.2s) ================= -->
+    <div class="scene" id="scene-2" data-start="3.6" data-duration="3.6">
+      <div class="tagline-sub">ZERO-LATENCY INFERENCE</div>
+      <h1 class="massive-title">
+        DECISION AT <br><span class="glow-cyan">20 MILLISECONDS.</span>
+      </h1>
+      <div class="stat-strip">
+        <div class="stat-cell">
+          <div class="number" style="color: var(--cyan);" id="latency-counter">20.4</div>
+          <div class="metric-name">Latency (ms)</div>
+        </div>
+        <div class="stat-cell amber-accent">
+          <div class="number" style="color: var(--amber);">20.0</div>
+          <div class="metric-name">Bandwidth (MHz)</div>
+        </div>
+        <div class="stat-cell green-accent">
+          <div class="number" style="color: var(--green);">100%</div>
+          <div class="metric-name">Deterministic</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= SCENE 3: RESNET-18 DEMODULATION (7.2s - 11.0s) ================= -->
+    <div class="scene" id="scene-3" data-start="7.2" data-duration="3.8">
+      <div class="tagline-sub">AUTOMATIC MODULATION RECOGNITION</div>
+      <h1 class="massive-title">
+        DEEP RESNET-18 <br><span class="glow-amber">DEMODULATION CORE.</span>
+      </h1>
+      <p class="sub-lead">
+        Autonomous classification across BPSK, QPSK, 16-QAM, 64-QAM, and FSK with zero manual signal tuning or prior metadata.
+      </p>
+    </div>
+
+    <!-- ================= SCENE 4: AIR-GAP ARCHITECTURE (11.0s - 14.6s) ================= -->
+    <div class="scene" id="scene-4" data-start="11.0" data-duration="3.6">
+      <div class="tagline-sub">CRITICAL INFRASTRUCTURE DEFENSE</div>
+      <h1 class="massive-title">
+        ZERO NETWORK EGRESS. <br><span class="glow-cyan">100% AIR-GAPPED.</span>
+      </h1>
+      <div class="stat-strip">
+        <div class="stat-cell red-accent">
+          <div class="number" style="color: var(--red);">0.00%</div>
+          <div class="metric-name">Cloud Dependency</div>
+        </div>
+        <div class="stat-cell green-accent">
+          <div class="number" style="color: var(--green);">1-CLICK</div>
+          <div class="metric-name">Forensic PDF Dossier</div>
+        </div>
+        <div class="stat-cell">
+          <div class="number" style="color: var(--cyan);">SUB-GHZ</div>
+          <div class="metric-name">Full RF Coverage</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= SCENE 5: CLIMAX & OFFICIAL BRAND (14.6s - 18.0s) ================= -->
+    <div class="scene" id="scene-5" data-start="14.6" data-duration="3.4">
+      <img src="assets/logo.png" alt="SIGNEX" class="brand-hero-logo">
+
+      <h1 class="massive-title" style="font-size: 80px; letter-spacing: -0.04em;">
+        SIGNEX
+      </h1>
+      
+      <p style="font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 700; letter-spacing: 0.25em; color: var(--cyan); margin-top: 14px;">
+        SIGNALS EXTRACTION & CLASSIFICATION WORKSTATION
+      </p>
+    </div>
+
+    <!-- Background Audio (Synced) -->
+    <audio id="soundtrack" src="assets/music/track.mp3" data-start="0" data-duration="18"></audio>
+
+  </div>
+
+  <script>
+    window.__timelines = window.__timelines || {};
+
+    const canvas = document.getElementById('dsp-canvas');
+    const ctx = canvas.getContext('2d');
+    const width = 1920;
+    const height = 1080;
+
+    const qamPoints = [];
+    for (let i = -3; i <= 3; i += 2) {
+      for (let j = -3; j <= 3; j += 2) {
+        qamPoints.push({ x: i * 42, y: j * 42 });
+      }
+    }
+
+    // Deterministic DSP Canvas renderer based on timeline position (0 to 18 seconds)
+    function renderDSPAtTime(t) {
+      ctx.clearRect(0, 0, width, height);
+      const cx = width / 2;
+      const cy = height / 2;
+
+      // Scene 1: Chaotic RF Noise (0 - 3.6s)
+      if (t < 3.6) {
+        const p = t * 12;
+        ctx.beginPath();
+        ctx.strokeStyle = 'rgba(255, 42, 85, 0.45)';
+        ctx.lineWidth = 2.5;
+        for (let x = 0; x < width; x += 6) {
+          const pseudoNoise = (Math.sin(x * 12.9898 + p * 78.233) % 1) * 60;
+          const y = cy + pseudoNoise + Math.sin(x * 0.005 + p * 0.2) * 60;
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.strokeStyle = 'rgba(0, 240, 255, 0.3)';
+        ctx.lineWidth = 1.5;
+        for (let x = 0; x < width; x += 6) {
+          const y = cy + Math.sin(x * 0.015 - p * 0.3) * 45;
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+      }
+      // Scene 2: Sweeping Phosphor Oscilloscope (3.6s - 7.2s)
+      else if (t < 7.2) {
+        const p = (t - 3.6) * 15;
+        ctx.beginPath();
+        ctx.strokeStyle = 'rgba(0, 240, 255, 0.7)';
+        ctx.lineWidth = 3.5;
+        for (let x = 0; x < width; x += 4) {
+          const harmonic = Math.sin(x * 0.008 + p * 0.3) * 100 + Math.sin(x * 0.024 - p * 0.5) * 35;
+          const y = cy + harmonic;
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+
+        const sweepX = (p * 80) % width;
+        ctx.strokeStyle = 'rgba(0, 240, 255, 0.4)';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(sweepX, 0); ctx.lineTo(sweepX, height);
+        ctx.stroke();
+      }
+      // Scene 3: Constellation Lock Matrix (7.2s - 11.0s)
+      else if (t < 11.0) {
+        const p = (t - 7.2);
+        ctx.save();
+        ctx.translate(cx, cy);
+
+        ctx.strokeStyle = 'rgba(255, 170, 0, 0.25)';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.arc(0, 0, 200, 0, Math.PI * 2);
+        ctx.arc(0, 0, 120, 0, Math.PI * 2);
+        ctx.stroke();
+
+        qamPoints.forEach((pt, idx) => {
+          const px = pt.x + Math.sin(p * 5 + idx) * 3;
+          const py = pt.y + Math.cos(p * 4 + idx) * 3;
+
+          ctx.fillStyle = idx % 2 === 0 ? '#ffaa00' : '#00f0ff';
+          ctx.beginPath();
+          ctx.arc(px, py, 3.5, 0, Math.PI * 2);
+          ctx.fill();
+
+          if (idx % 4 === 0) {
+            ctx.strokeStyle = 'rgba(0, 255, 136, 0.5)';
+            ctx.strokeRect(px - 10, py - 10, 20, 20);
+          }
+        });
+
+        ctx.rotate(p * 0.5);
+        ctx.strokeStyle = 'rgba(0, 240, 255, 0.3)';
+        ctx.strokeRect(-160, -160, 320, 320);
+        ctx.restore();
+      }
+      // Scene 4: Radar Enclave (11.0s - 14.6s)
+      else if (t < 14.6) {
+        ctx.save();
+        ctx.translate(cx, cy);
+
+        for (let r = 80; r <= 360; r += 70) {
+          ctx.beginPath();
+          ctx.arc(0, 0, r, 0, Math.PI * 2);
+          ctx.strokeStyle = 'rgba(0, 240, 255, 0.15)';
+          ctx.stroke();
+        }
+
+        ctx.strokeStyle = 'rgba(255, 42, 85, 0.4)';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(-260, 0); ctx.lineTo(260, 0);
+        ctx.moveTo(0, -260); ctx.lineTo(0, 260);
+        ctx.stroke();
+        ctx.restore();
+      }
+      // Scene 5: Outro Aura (14.6s - 18.0s)
+      else {
+        const grad = ctx.createLinearGradient(0, cy, width, cy);
+        grad.addColorStop(0, 'rgba(0, 240, 255, 0)');
+        grad.addColorStop(0.5, 'rgba(0, 240, 255, 0.4)');
+        grad.addColorStop(1, 'rgba(0, 240, 255, 0)');
+
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, cy - 2, width, 4);
+      }
+    }
+
+    // GSAP Master Timeline (Deterministic frame controller)
+    const tl = gsap.timeline({
+      paused: true,
+      onUpdate: () => {
+        const curTime = tl.time();
+        renderDSPAtTime(curTime);
+
+        // Progress bar
+        const pct = (curTime / 18) * 100;
+        document.getElementById('progress-bar').style.width = pct + '%';
+        document.getElementById('scene-clock').textContent = `TIME: ${curTime.toFixed(2)}s`;
+      }
+    });
+
+    // SCENE 1 (0 to 3.6s)
+    tl.fromTo('#scene-1', { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.4 }, 0)
+      .to('#flash-effect', { opacity: 0.8, duration: 0.05, yoyo: true, repeat: 1 }, 0)
+      .to('#scene-1', { opacity: 0, scale: 1.05, duration: 0.3 }, 3.3);
+
+    // SCENE 2 (3.6 to 7.2s)
+    tl.fromTo('#scene-2', { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.4 }, 3.6)
+      .to('#flash-effect', { opacity: 0.8, duration: 0.05, yoyo: true, repeat: 1 }, 3.6)
+      .to('#scene-2', { opacity: 0, scale: 1.05, duration: 0.3 }, 6.9);
+
+    // SCENE 3 (7.2 to 11.0s)
+    tl.fromTo('#scene-3', { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.4 }, 7.2)
+      .to('#flash-effect', { opacity: 0.8, duration: 0.05, yoyo: true, repeat: 1 }, 7.2)
+      .to('#scene-3', { opacity: 0, scale: 1.05, duration: 0.3 }, 10.7);
+
+    // SCENE 4 (11.0 to 14.6s)
+    tl.fromTo('#scene-4', { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.4 }, 11.0)
+      .to('#flash-effect', { opacity: 0.8, duration: 0.05, yoyo: true, repeat: 1 }, 11.0)
+      .to('#scene-4', { opacity: 0, scale: 1.05, duration: 0.3 }, 14.3);
+
+    // SCENE 5 (14.6 to 18.0s)
+    tl.fromTo('#scene-5', { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.4 }, 14.6)
+      .to('#flash-effect', { opacity: 0.8, duration: 0.05, yoyo: true, repeat: 1 }, 14.6)
+      .to('#scene-5', { opacity: 1, duration: 3.4 }, 14.6);
+
+    window.__timelines["main"] = tl;
+    tl.seek(0);
+  </script>
+</body>
+</html>

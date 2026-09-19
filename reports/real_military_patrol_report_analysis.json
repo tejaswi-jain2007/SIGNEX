@@ -1,0 +1,448 @@
+{
+  "schema_version": "2.1",
+  "metadata": {
+    "input_filename": "real_military_patrol_report.iq",
+    "input_filepath": "C:\\Users\\tejas\\OneDrive\\Desktop\\SIH\\SIH\\data\\test_samples\\real_military_patrol_report.iq",
+    "input_sha256": "057c46ee637db9b18ee414c4bbbbe949f72eac2dfd8b83f15fe4d46bad65a7e1",
+    "input_size_bytes": 524288,
+    "timestamp_utc": "2026-09-19T08:29:49Z",
+    "operator_id": "SIGINT-AIRGAP-OPERATOR",
+    "model_version": "amc_resnet18_v1.0",
+    "execution_environment": "NTRO Air-Gapped Workstation"
+  },
+  "parameters": {
+    "estimated_fs": 2000000.0,
+    "symbol_rate": 250000.0,
+    "symbol_rate_confidence": 0.99,
+    "bandwidth_3db": 976.5625,
+    "occupied_bandwidth_99": 1732421.875,
+    "center_frequency_offset": 27053.07181489343,
+    "snr_db": 10.780705451965332,
+    "noise_floor_db": 6.334604740142822,
+    "papr_db": 2.8888912200927734,
+    "crest_factor": 1.3945837020874023,
+    "carrier_frequency_offset": 0.0,
+    "spectral_flatness": 0.1331520825624466,
+    "envelope_peak": 1.3945835828781128,
+    "envelope_mean": 0.9813606142997742,
+    "envelope_variance": 0.036931127309799194,
+    "burst_duty_cycle": 1.0,
+    "fs": 2000000.0,
+    "center_freq": 27053.07181489343,
+    "bandwidth_99pct": 1732421.875,
+    "cfo_hz": 0.0
+  },
+  "modulation_classification": {
+    "predicted_class": "WBFM",
+    "confidence": 0.9876536130905151,
+    "is_low_confidence": false,
+    "is_ood": false,
+    "probabilities": {
+      "BPSK": 2.7984348172083173e-09,
+      "QPSK": 1.652793457651569e-08,
+      "8-PSK": 9.015613500196196e-08,
+      "16-QAM": 1.2526267312296113e-07,
+      "64-QAM": 1.3546277841669507e-06,
+      "2-FSK": 0.012270946055650711,
+      "4-FSK": 7.31972831999883e-05,
+      "AM-DSB": 7.082011279635481e-07,
+      "WBFM": 0.9876536130905151
+    },
+    "features_used": "ResNet-18 1D CNN"
+  },
+  "demodulation": {
+    "modulation": "QPSK",
+    "total_bits": 16384,
+    "evm_pct": 10.000478744506836,
+    "carrier_phase_error": 0.2771737575531006
+  },
+  "decoding": {},
+  "extracted_frames": [
+    {
+      "sync_index": 0,
+      "transmitter_id": "0x0A08",
+      "sequence_number": 10890,
+      "payload_length": 2041,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "84084A482AC9E5A6440A89E4090A2405",
+      "ascii_preview": "..JH*...D.....$....h.j..D...I.H."
+    },
+    {
+      "sync_index": 845,
+      "transmitter_id": "0x2539",
+      "sequence_number": 1331,
+      "payload_length": 1935,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "410551493D3081094905593CB4C88151",
+      "ascii_preview": "A.QI=0..I.Y<...Q<.!D....M..Q=H.."
+    },
+    {
+      "sync_index": 888,
+      "transmitter_id": "0x0A08",
+      "sequence_number": 10890,
+      "payload_length": 1930,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "84084A482AC9E5A6440A89E4090A2405",
+      "ascii_preview": "..JH*...D.....$....h.j..D...I.H."
+    },
+    {
+      "sync_index": 1733,
+      "transmitter_id": "0x2539",
+      "sequence_number": 1331,
+      "payload_length": 1824,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "410551493D3081094905593CB4C88151",
+      "ascii_preview": "A.QI=0..I.Y<...Q<.!D....M..Q=H.."
+    },
+    {
+      "sync_index": 1776,
+      "transmitter_id": "0x0A08",
+      "sequence_number": 10890,
+      "payload_length": 1819,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "84084A482AC9E5A6440A89E4090A2405",
+      "ascii_preview": "..JH*...D.....$....h.j..D...I.H."
+    },
+    {
+      "sync_index": 2621,
+      "transmitter_id": "0x2539",
+      "sequence_number": 1331,
+      "payload_length": 1713,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "410551493D3081094905593CB4C88151",
+      "ascii_preview": "A.QI=0..I.Y<...Q<.!D....M..Q=H.."
+    },
+    {
+      "sync_index": 2664,
+      "transmitter_id": "0x0A08",
+      "sequence_number": 10890,
+      "payload_length": 1708,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "84084A482AC9E5A6440A89E4090A2405",
+      "ascii_preview": "..JH*...D.....$....h.j..D...I.H."
+    },
+    {
+      "sync_index": 3509,
+      "transmitter_id": "0x2539",
+      "sequence_number": 1331,
+      "payload_length": 1602,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "410551493D3081094905593CB4C88151",
+      "ascii_preview": "A.QI=0..I.Y<...Q<.!D....M..Q=H.."
+    },
+    {
+      "sync_index": 3552,
+      "transmitter_id": "0x0A08",
+      "sequence_number": 10890,
+      "payload_length": 1597,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "84084A482AC9E5A6440A89E4090A2405",
+      "ascii_preview": "..JH*...D.....$....h.j..D...I.H."
+    },
+    {
+      "sync_index": 4397,
+      "transmitter_id": "0x2539",
+      "sequence_number": 1331,
+      "payload_length": 1491,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "410551493D3081094905593CB4C88151",
+      "ascii_preview": "A.QI=0..I.Y<...Q<.!D....M..Q=H.."
+    },
+    {
+      "sync_index": 4440,
+      "transmitter_id": "0x0A08",
+      "sequence_number": 10890,
+      "payload_length": 1486,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "84084A482AC9E5A6440A89E4090A2405",
+      "ascii_preview": "..JH*...D.....$....h.j..D...I.H."
+    },
+    {
+      "sync_index": 5285,
+      "transmitter_id": "0x2539",
+      "sequence_number": 1331,
+      "payload_length": 1380,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "410551493D3081094905593CB4C88151",
+      "ascii_preview": "A.QI=0..I.Y<...Q<.!D....M..Q=H.."
+    },
+    {
+      "sync_index": 5328,
+      "transmitter_id": "0x0A08",
+      "sequence_number": 10890,
+      "payload_length": 1375,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "84084A482AC9E5A6440A89E4090A2405",
+      "ascii_preview": "..JH*...D.....$....h.j..D...I.H."
+    },
+    {
+      "sync_index": 6173,
+      "transmitter_id": "0x2539",
+      "sequence_number": 1331,
+      "payload_length": 1269,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "410551493D3081094905593CB4C88151",
+      "ascii_preview": "A.QI=0..I.Y<...Q<.!D....M..Q=H.."
+    },
+    {
+      "sync_index": 6216,
+      "transmitter_id": "0x0A08",
+      "sequence_number": 10890,
+      "payload_length": 1264,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "84084A482AC9E5A6440A89E4090A2405",
+      "ascii_preview": "..JH*...D.....$....h.j..D...I.H."
+    },
+    {
+      "sync_index": 7061,
+      "transmitter_id": "0x2539",
+      "sequence_number": 1331,
+      "payload_length": 1158,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "410551493D3081094905593CB4C88151",
+      "ascii_preview": "A.QI=0..I.Y<...Q<.!D....M..Q=H.."
+    },
+    {
+      "sync_index": 7104,
+      "transmitter_id": "0x0A08",
+      "sequence_number": 10890,
+      "payload_length": 1153,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "84084A482AC9E5A6440A89E4090A2405",
+      "ascii_preview": "..JH*...D.....$....h.j..D...I.H."
+    },
+    {
+      "sync_index": 7949,
+      "transmitter_id": "0x2539",
+      "sequence_number": 1331,
+      "payload_length": 1047,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "410551493D3081094905593CB4C88151",
+      "ascii_preview": "A.QI=0..I.Y<...Q<.!D....M..Q=H.."
+    },
+    {
+      "sync_index": 7992,
+      "transmitter_id": "0x0A08",
+      "sequence_number": 10890,
+      "payload_length": 1042,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "84084A482AC9E5A6440A89E4090A2405",
+      "ascii_preview": "..JH*...D.....$....h.j..D...I.H."
+    },
+    {
+      "sync_index": 8837,
+      "transmitter_id": "0x2539",
+      "sequence_number": 1331,
+      "payload_length": 936,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "410551493D3081094905593CB4C88151",
+      "ascii_preview": "A.QI=0..I.Y<...Q<.!D....M..Q=H.."
+    },
+    {
+      "sync_index": 8880,
+      "transmitter_id": "0x0A08",
+      "sequence_number": 10890,
+      "payload_length": 931,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "84084A482AC9E5A6440A89E4090A2405",
+      "ascii_preview": "..JH*...D.....$....h.j..D...I.H."
+    },
+    {
+      "sync_index": 9725,
+      "transmitter_id": "0x2539",
+      "sequence_number": 1331,
+      "payload_length": 825,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "410551493D3081094905593CB4C88151",
+      "ascii_preview": "A.QI=0..I.Y<...Q<.!D....M..Q=H.."
+    },
+    {
+      "sync_index": 9768,
+      "transmitter_id": "0x0A08",
+      "sequence_number": 10890,
+      "payload_length": 820,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "84084A482AC9E5A6440A89E4090A2405",
+      "ascii_preview": "..JH*...D.....$....h.j..D...I.H."
+    },
+    {
+      "sync_index": 10613,
+      "transmitter_id": "0x2539",
+      "sequence_number": 1331,
+      "payload_length": 714,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "410551493D3081094905593CB4C88151",
+      "ascii_preview": "A.QI=0..I.Y<...Q<.!D....M..Q=H.."
+    },
+    {
+      "sync_index": 10656,
+      "transmitter_id": "0x0A08",
+      "sequence_number": 10890,
+      "payload_length": 709,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "84084A482AC9E5A6440A89E4090A2405",
+      "ascii_preview": "..JH*...D.....$....h.j..D...I.H."
+    },
+    {
+      "sync_index": 11501,
+      "transmitter_id": "0x2539",
+      "sequence_number": 1331,
+      "payload_length": 603,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "410551493D3081094905593CB4C88151",
+      "ascii_preview": "A.QI=0..I.Y<...Q<.!D....M..Q=H.."
+    },
+    {
+      "sync_index": 11544,
+      "transmitter_id": "0x0A08",
+      "sequence_number": 10890,
+      "payload_length": 598,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "84084A482AC9E5A6440A89E4090A2405",
+      "ascii_preview": "..JH*...D.....$....h.j..D...I.H."
+    },
+    {
+      "sync_index": 12389,
+      "transmitter_id": "0x2539",
+      "sequence_number": 1331,
+      "payload_length": 492,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "410551493D3081094905593CB4C88151",
+      "ascii_preview": "A.QI=0..I.Y<...Q<.!D....M..Q=H.."
+    },
+    {
+      "sync_index": 12432,
+      "transmitter_id": "0x0A08",
+      "sequence_number": 10890,
+      "payload_length": 487,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "84084A482AC9E5A6440A89E4090A2405",
+      "ascii_preview": "..JH*...D.....$....h.j..D...I.H."
+    },
+    {
+      "sync_index": 13277,
+      "transmitter_id": "0x2539",
+      "sequence_number": 1331,
+      "payload_length": 381,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "410551493D3081094905593CB4C88151",
+      "ascii_preview": "A.QI=0..I.Y<...Q<.!D....M..Q=H.."
+    },
+    {
+      "sync_index": 13320,
+      "transmitter_id": "0x0A08",
+      "sequence_number": 10890,
+      "payload_length": 376,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "84084A482AC9E5A6440A89E4090A2405",
+      "ascii_preview": "..JH*...D.....$....h.j..D...I.H."
+    },
+    {
+      "sync_index": 14165,
+      "transmitter_id": "0x2539",
+      "sequence_number": 1331,
+      "payload_length": 270,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "410551493D3081094905593CB4C88151",
+      "ascii_preview": "A.QI=0..I.Y<...Q<.!D....M..Q=H.."
+    },
+    {
+      "sync_index": 14208,
+      "transmitter_id": "0x0A08",
+      "sequence_number": 10890,
+      "payload_length": 265,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "84084A482AC9E5A6440A89E4090A2405",
+      "ascii_preview": "..JH*...D.....$....h.j..D...I.H."
+    },
+    {
+      "sync_index": 15053,
+      "transmitter_id": "0x2539",
+      "sequence_number": 1331,
+      "payload_length": 159,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "410551493D3081094905593CB4C88151",
+      "ascii_preview": "A.QI=0..I.Y<...Q<.!D....M..Q=H.."
+    },
+    {
+      "sync_index": 15096,
+      "transmitter_id": "0x0A08",
+      "sequence_number": 10890,
+      "payload_length": 154,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "84084A482AC9E5A6440A89E4090A2405",
+      "ascii_preview": "..JH*...D.....$....h.j..D...I.H."
+    },
+    {
+      "sync_index": 15941,
+      "transmitter_id": "0x2539",
+      "sequence_number": 1331,
+      "payload_length": 48,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "410551493D3081094905593CB4C88151",
+      "ascii_preview": "A.QI=0..I.Y<...Q<.!D....M..Q=H.."
+    },
+    {
+      "sync_index": 15984,
+      "transmitter_id": "0x0A08",
+      "sequence_number": 10890,
+      "payload_length": 43,
+      "crc_valid": false,
+      "fec_status": "PARTIAL_RECOVERED",
+      "hex_preview": "84084A482AC9E5A6440A89E4090A2405",
+      "ascii_preview": "..JH*...D.....$....h.j..D...I.H."
+    }
+  ],
+  "decoded_message": {
+    "has_message": true,
+    "primary_message": "PATROL BRAVO-2 TO HQ // SECTOR 7 BORDER CLEAR // GRID: 34.12N 74.88E // NO HOSTILE CONTACT // STATUS: NOMINAL",
+    "clean_text_stream": "PATROL BRAVO-2 TO HQ // SECTOR 7 BORDER CLEAR // GRID: 34.12N 74.88E // NO HOSTILE CONTACT // STATUS: NOMINAL PATROL BRAVO-2 TO HQ // SECTOR 7 BORDER CLEAR // GRID: 34.12N 74.88E // NO HOSTILE CONTACT // STATUS: NOMINAL PATROL BRAVO-2 TO HQ // SECTOR 7 BORDER CLEAR // GRID: 34.12N 74.88E // NO HOSTILE CONTACT // STATUS: NOMINAL PATROL BRAVO-2 TO HQ // SECTOR 7 BORDER CLEAR // GRID: 34.12N 74.88E // NO HOSTILE CONTACT // STATUS: NOMINAL PATROL BRAVO-2 TO HQ // SECTOR 7 BORDER CLEAR // GRID: 34.12",
+    "extracted_strings": [
+      "PATROL BRAVO-2 TO HQ // SECTOR 7 BORDER CLEAR // GRID: 34.12N 74.88E // NO HOSTILE CONTACT // STATUS: NOMINAL"
+    ],
+    "confidence_pct": 98.5,
+    "best_alignment": "Sync @ 0b | Normal",
+    "telemetry_tags": {
+      "GRID": "34.12N",
+      "STATUS": "NOMINAL"
+    },
+    "summary": "Decoded 313 words with 98.5% ASCII confidence via Sync @ 0b | Normal.",
+    "total_words_found": 313
+  }
+}

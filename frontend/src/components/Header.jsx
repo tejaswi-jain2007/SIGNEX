@@ -105,7 +105,7 @@ export default function Header({
               : 'text-slate-400 hover:text-slate-200'
           }`}
         >
-          Payload & Hex View
+          Decoded Message & Payload
         </button>
 
         <button

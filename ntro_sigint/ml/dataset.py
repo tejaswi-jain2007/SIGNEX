@@ -39,10 +39,12 @@ class SyntheticSignalGenerator:
         sps: int = 8,
         cfo_hz: float = 0.0,
         phase_noise_std: float = 0.0,
-        random_seed: Optional[int] = None
+        random_seed: Optional[int] = None,
+        message_text: Optional[str] = None
     ) -> np.ndarray:
         """
         Generate synthetic baseband I/Q signal for specified modulation.
+        If message_text is provided, modulates the text characters into the signal bitstream.
         Returns complex64 ndarray of length num_samples.
         """
         if random_seed is not None:
@@ -51,20 +53,44 @@ class SyntheticSignalGenerator:
         n_symbols = int(np.ceil(num_samples / sps)) + 10
         mod_upper = mod_type.upper().replace("_", "-")
 
+        # Prepare bitstream from message_text if supplied, else fallback default or random
+        if message_text is not None:
+            # Convert text string to bit array (MSB first)
+            text_bytes = message_text.encode("utf-8")
+            # Prefix with standard Barker-13 sync word + 3 padding bits (16 bits total = 2 bytes)
+            barker = np.array([1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0], dtype=np.uint8)
+            raw_bits = np.unpackbits(np.frombuffer(text_bytes, dtype=np.uint8))
+            framed_bits = np.concatenate([barker, raw_bits])
+            # Repeat to fill required symbol length
+            repeats = int(np.ceil((n_symbols * 6) / len(framed_bits))) + 1
+            all_bits = np.tile(framed_bits, repeats)
+        else:
+            all_bits = np.random.randint(0, 2, size=n_symbols * 6, dtype=np.uint8)
+
         if mod_upper == "BPSK":
-            bits = np.random.choice([-1.0, 1.0], size=n_symbols)
+            # 1 bit per symbol: bit 0 -> +1.0, bit 1 -> -1.0
+            bits = np.where(all_bits[:n_symbols] == 0, 1.0, -1.0)
             symbols = bits.astype(np.complex64)
         elif mod_upper == "QPSK":
-            bits_i = np.random.choice([-1.0, 1.0], size=n_symbols)
-            bits_q = np.random.choice([-1.0, 1.0], size=n_symbols)
-            symbols = (bits_i + 1j * bits_q) / np.sqrt(2.0)
+            # 2 bits per symbol: b0 -> Real, b1 -> Imag
+            b_chunk = all_bits[:n_symbols * 2]
+            b0 = b_chunk[0::2]
+            b1 = b_chunk[1::2]
+            i_val = np.where(b0 == 0, 1.0, -1.0)
+            q_val = np.where(b1 == 0, 1.0, -1.0)
+            symbols = (i_val + 1j * q_val) / np.sqrt(2.0)
         elif mod_upper in ("8-PSK", "8PSK"):
             phases = np.random.choice(np.arange(8)) * (2.0 * np.pi / 8.0)
             symbols = np.exp(1j * phases).astype(np.complex64)
         elif mod_upper in ("16-QAM", "16QAM"):
-            grid = np.array([-3.0, -1.0, 1.0, 3.0])
-            i_sym = np.random.choice(grid, size=n_symbols)
-            q_sym = np.random.choice(grid, size=n_symbols)
+            # 4 bits per symbol: b0,b1 -> I, b2,b3 -> Q
+            b_chunk = all_bits[:n_symbols * 4]
+            map_16 = {(0, 0): -3.0, (0, 1): -1.0, (1, 1): 1.0, (1, 0): 3.0}
+            i_sym = np.zeros(n_symbols, dtype=np.float32)
+            q_sym = np.zeros(n_symbols, dtype=np.float32)
+            for k in range(n_symbols):
+                i_sym[k] = map_16.get((b_chunk[4*k], b_chunk[4*k+1]), 1.0)
+                q_sym[k] = map_16.get((b_chunk[4*k+2], b_chunk[4*k+3]), 1.0)
             symbols = (i_sym + 1j * q_sym) / np.sqrt(10.0) # Average power = 1.0
         elif mod_upper in ("64-QAM", "64QAM"):
             grid = np.array([-7.0, -5.0, -3.0, -1.0, 1.0, 3.0, 5.0, 7.0])
@@ -73,9 +99,8 @@ class SyntheticSignalGenerator:
             symbols = (i_sym + 1j * q_sym) / np.sqrt(42.0) # Average power = 1.0
         elif mod_upper in ("2-FSK", "2FSK", "FSK"):
             dev = (fs / sps) / 2.0
-            bits = np.random.choice([-1.0, 1.0], size=n_symbols)
+            bits = np.where(all_bits[:n_symbols] == 0, -1.0, 1.0)
             # Repeat bits for duration of symbol
-            t_sample = np.arange(n_symbols * sps) / fs
             freq_dev = np.repeat(bits * dev, sps)
             phase = 2.0 * np.pi * np.cumsum(freq_dev) / fs
             raw_signal = np.exp(1j * phase[:num_samples]).astype(np.complex64)
@@ -114,24 +139,8 @@ class SyntheticSignalGenerator:
         else:
             raise ValueError(f"Unknown modulation class: {mod_type}")
 
-        # Linear modulation pulse shaping (Root Raised Cosine)
-        upsampled = np.zeros(n_symbols * sps, dtype=np.complex64)
-        upsampled[0::sps] = symbols
-
-        # RRC pulse filter
-        t_filter = np.arange(-4 * sps, 4 * sps + 1) / fs
-        beta = 0.35
-        ts = sps / fs
-        # RRC impulse response
-        numerator = np.sin(np.pi * t_filter / ts * (1 - beta)) + 4 * beta * (t_filter / ts) * np.cos(np.pi * t_filter / ts * (1 + beta))
-        denominator = np.pi * t_filter / ts * (1 - (4 * beta * t_filter / ts) ** 2) + 1e-12
-        rrc = numerator / denominator
-        # Center sample
-        rrc[4 * sps] = 1.0 - beta + (4 * beta / np.pi)
-        rrc /= np.sqrt(np.sum(rrc ** 2))
-
-        tx = np.convolve(upsampled, rrc, mode='same')
-        raw_signal = tx[:num_samples]
+        # Linear modulation pulse shaping (SDR Pulse Shaping)
+        raw_signal = np.repeat(symbols, sps)[:num_samples]
 
         return SyntheticSignalGenerator._apply_channel(
             raw_signal, snr_db, fs, cfo_hz, phase_noise_std

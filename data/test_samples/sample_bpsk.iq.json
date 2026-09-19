@@ -1,8 +1,9 @@
 {
-  "sample_rate": 1000000.0,
-  "center_freq": 50000.0,
-  "format": "float32",
+  "sample_rate": 2000000.0,
+  "center_freq": 100000.0,
+  "format": "complex64",
   "modulation": "BPSK",
-  "nominal_snr_db": 18.0,
-  "description": "Standard BPSK Tactical Datalink"
+  "nominal_snr_db": 28.0,
+  "description": "BPSK Tactical Beacon with GPS Telemetry",
+  "embedded_message": "NTRO BEACON // LAT: 28.6139N LON: 77.2090E // FREQ: 2.412 GHz // STATUS: OPERATIONAL"
 }

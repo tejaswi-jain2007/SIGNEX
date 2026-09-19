@@ -1,0 +1,9 @@
+{
+  "sample_rate": 2000000.0,
+  "center_freq": 1000000.0,
+  "format": "complex64",
+  "modulation": "QPSK",
+  "nominal_snr_db": 28.0,
+  "description": "Tactical Military Border Recon Patrol Stream",
+  "embedded_message": "PATROL BRAVO-2 TO HQ // SECTOR 7 BORDER CLEAR // GRID: 34.12N 74.88E // NO HOSTILE CONTACT // STATUS: NOMINAL"
+}

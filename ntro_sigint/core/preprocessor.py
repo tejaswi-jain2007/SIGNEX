@@ -67,9 +67,12 @@ class SignalPreprocessor:
             return samples
         i_norm = i_comp / np.sqrt(p_i)
 
-        # Step 3: Orthogonalize Q with respect to I (Gram-Schmidt projection)
+        # Step 3: Orthogonalize Q with respect to I only if significant hardware imbalance exists
         rho = np.mean(i_norm * q_comp)
-        q_orth = q_comp - rho * i_norm
+        if abs(rho) > 0.08:
+            q_orth = q_comp - rho * i_norm
+        else:
+            q_orth = q_comp
 
         # Step 4: Normalize Q power to match I (unless 1D signal where Q is pure noise)
         p_q_orth = np.mean(q_orth ** 2)
@@ -79,9 +82,11 @@ class SignalPreprocessor:
         if (p_q_orth / p_i) < 0.05:
             # 1D real signal (BPSK / PAM / AM-DSB) - preserve natural low Q noise floor
             q_norm = q_orth / np.sqrt(p_i)
-        else:
-            # Genuine 2D quadrature signal (QPSK / QAM / FSK) - equalize power
+        elif abs(10.0 * np.log10(p_q_orth / p_i)) > 1.5:
+            # Significant amplitude imbalance - equalize power
             q_norm = q_orth / np.sqrt(p_q_orth)
+        else:
+            q_norm = q_orth / np.sqrt(p_i)
 
         return (i_norm + 1j * q_norm).astype(np.complex64)
 

@@ -1,8 +1,9 @@
 {
-  "sample_rate": 5000000.0,
-  "center_freq": 300000.0,
-  "format": "float32",
+  "sample_rate": 2000000.0,
+  "center_freq": 100000.0,
+  "format": "complex64",
   "modulation": "64-QAM",
-  "nominal_snr_db": 30.0,
-  "description": "64-QAM Dense Constellation Link"
+  "nominal_snr_db": 28.0,
+  "description": "64-QAM Microwave Relay Carrier",
+  "embedded_message": "WIDEBAND MICROWAVE RELAY // LINK SNR: +28.4 dB // THROUGHPUT: 155 MBPS // CARRIER LOCK CONFIRMED"
 }

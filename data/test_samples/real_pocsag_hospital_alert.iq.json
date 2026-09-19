@@ -1,0 +1,9 @@
+{
+  "sample_rate": 1000000.0,
+  "center_freq": 1000000.0,
+  "format": "complex64",
+  "modulation": "2-FSK",
+  "nominal_snr_db": 29.0,
+  "description": "POCSAG Hospital Emergency Room Pager Broadcast",
+  "embedded_message": "EMERGENCY ALERT // CODE RED TRAUMA CENTER // ICU ROOM 104 // MEDICAL TEAM ASSISTANCE REQUIRED IMMEDIATELY"
+}

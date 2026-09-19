@@ -1,8 +1,9 @@
 {
   "sample_rate": 1000000.0,
-  "center_freq": 0.0,
-  "format": "float32",
+  "center_freq": 100000.0,
+  "format": "complex64",
   "modulation": "2-FSK",
-  "nominal_snr_db": 20.0,
-  "description": "2-FSK Military Frequency Shift Keying"
+  "nominal_snr_db": 28.0,
+  "description": "2-FSK Tactical Data Link Message",
+  "embedded_message": "TACTICAL VHF DATA LINK // NODE: ALPHA-09 // AUTH: VERIFIED // MESSAGE: AIRSPACE MONITOR ACTIVE"
 }

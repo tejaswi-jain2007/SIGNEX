@@ -7,9 +7,11 @@ export default function ExportModal({ isOpen, onClose, analysisResult, theme = '
   const { downloads = {}, filename = 'signal_capture' } = analysisResult;
   const baseName = filename.replace(/\.[^/.]+$/, '');
 
+  const apiBase = (import.meta.env.VITE_API_URL || 'https://signex-backend.onrender.com').replace(/\/+$/, '');
+
   const handleDownload = (url, downloadName) => {
     if (!url) return;
-    const fullUrl = url.startsWith('http') ? url : `http://127.0.0.1:8000${url}`;
+    const fullUrl = url.startsWith('http') ? url : `${apiBase}${url}`;
     const link = document.createElement('a');
     link.href = fullUrl;
     link.download = downloadName;

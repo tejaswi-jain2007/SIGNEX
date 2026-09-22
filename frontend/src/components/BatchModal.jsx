@@ -39,7 +39,8 @@ export default function BatchModal({
           formData.append('preset_filename', item.presetFilename);
         }
 
-        const response = await fetch('http://127.0.0.1:8000/api/analyze', {
+        const apiBase = (import.meta.env.VITE_API_URL || 'https://signex-backend.onrender.com').replace(/\/+$/, '');
+        const response = await fetch(`${apiBase}/api/analyze`, {
           method: 'POST',
           body: formData
         });

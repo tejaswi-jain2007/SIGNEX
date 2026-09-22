@@ -9,9 +9,9 @@ import ExportModal from './components/ExportModal';
 import BatchModal from './components/BatchModal';
 import { AlertCircle } from 'lucide-react';
 
-// Backend URL — set VITE_API_URL in Vercel env vars to point to Render backend
-// e.g. https://signex-api.onrender.com
-const API_BASE = import.meta.env.VITE_API_URL || '';
+// Backend URL — defaults to live Render backend, or overridden by VITE_API_URL
+const API_BASE = (import.meta.env.VITE_API_URL || 'https://signex-backend.onrender.com').replace(/\/+$/, '');
+
 
 export default function App() {
   const [theme, setTheme] = useState('dark');

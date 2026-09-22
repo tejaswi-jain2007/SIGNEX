@@ -6,7 +6,7 @@ ENV/
 
 # Node & Frontend Build
 frontend/node_modules/
-frontend/dist/
+# frontend/dist/ — committed so Antideploy can serve the built React app
 frontend/.vite/
 frontend/npm-debug.log*
 frontend/yarn-debug.log*

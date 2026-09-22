@@ -12,9 +12,19 @@ import time
 from typing import Dict, Any, Tuple, Optional, List
 from dataclasses import dataclass
 import numpy as np
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
+
+# Torch is optional — only needed for ResNet-18 deep learning path.
+# Cloud deployments without GPU/torch fall back to cumulant-only classification.
+try:
+    import torch
+    import torch.nn as nn
+    import torch.nn.functional as F
+    TORCH_AVAILABLE = True
+except ImportError:
+    torch = None  # type: ignore
+    nn = None     # type: ignore
+    F = None      # type: ignore
+    TORCH_AVAILABLE = False
 
 from ntro_sigint.ml.dataset import MODULATION_CLASSES, CLASS_TO_IDX, IDX_TO_CLASS
 
@@ -35,73 +45,68 @@ class AMCResult:
 # 1. ResNet-18 1D CNN Architecture
 # -------------------------------------------------------------
 
-class ResidualBlock1D(nn.Module):
-    """1D Residual Block with skip connection."""
-    def __init__(self, in_channels: int, out_channels: int, stride: int = 1):
-        super().__init__()
-        self.conv1 = nn.Conv1d(in_channels, out_channels, kernel_size=3, stride=stride, padding=1, bias=False)
-        self.bn1 = nn.BatchNorm1d(out_channels)
-        self.conv2 = nn.Conv1d(out_channels, out_channels, kernel_size=3, stride=1, padding=1, bias=False)
-        self.bn2 = nn.BatchNorm1d(out_channels)
+if TORCH_AVAILABLE:
+    class ResidualBlock1D(nn.Module):
+        """1D Residual Block with skip connection."""
+        def __init__(self, in_channels: int, out_channels: int, stride: int = 1):
+            super().__init__()
+            self.conv1 = nn.Conv1d(in_channels, out_channels, kernel_size=3, stride=stride, padding=1, bias=False)
+            self.bn1 = nn.BatchNorm1d(out_channels)
+            self.conv2 = nn.Conv1d(out_channels, out_channels, kernel_size=3, stride=1, padding=1, bias=False)
+            self.bn2 = nn.BatchNorm1d(out_channels)
+            self.shortcut = nn.Sequential()
+            if stride != 1 or in_channels != out_channels:
+                self.shortcut = nn.Sequential(
+                    nn.Conv1d(in_channels, out_channels, kernel_size=1, stride=stride, bias=False),
+                    nn.BatchNorm1d(out_channels)
+                )
 
-        self.shortcut = nn.Sequential()
-        if stride != 1 or in_channels != out_channels:
-            self.shortcut = nn.Sequential(
-                nn.Conv1d(in_channels, out_channels, kernel_size=1, stride=stride, bias=False),
-                nn.BatchNorm1d(out_channels)
+        def forward(self, x):
+            res = self.shortcut(x)
+            out = F.relu(self.bn1(self.conv1(x)))
+            out = self.bn2(self.conv2(out))
+            out += res
+            return F.relu(out)
+
+    class ResNet18_1D(nn.Module):
+        """
+        1D ResNet-18 for raw I/Q signal classification.
+        Input shape: [Batch, 2, 1024]
+        Output: Logits [Batch, num_classes]
+        """
+        def __init__(self, num_classes: int = len(MODULATION_CLASSES)):
+            super().__init__()
+            self.in_channels = 64
+            self.stem = nn.Sequential(
+                nn.Conv1d(2, 64, kernel_size=7, stride=1, padding=3, bias=False),
+                nn.BatchNorm1d(64),
+                nn.ReLU(inplace=True),
+                nn.MaxPool1d(kernel_size=3, stride=2, padding=1)
             )
+            self.layer1 = self._make_layer(64, num_blocks=2, stride=1)
+            self.layer2 = self._make_layer(128, num_blocks=2, stride=2)
+            self.layer3 = self._make_layer(256, num_blocks=2, stride=2)
+            self.layer4 = self._make_layer(512, num_blocks=2, stride=2)
+            self.avg_pool = nn.AdaptiveAvgPool1d(1)
+            self.fc = nn.Linear(512, num_classes)
 
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        res = self.shortcut(x)
-        out = F.relu(self.bn1(self.conv1(x)))
-        out = self.bn2(self.conv2(out))
-        out += res
-        return F.relu(out)
+        def _make_layer(self, out_channels: int, num_blocks: int, stride: int) -> nn.Sequential:
+            strides = [stride] + [1] * (num_blocks - 1)
+            layers = []
+            for s in strides:
+                layers.append(ResidualBlock1D(self.in_channels, out_channels, s))
+                self.in_channels = out_channels
+            return nn.Sequential(*layers)
 
-
-class ResNet18_1D(nn.Module):
-    """
-    1D ResNet-18 for raw I/Q signal classification.
-    Input shape: [Batch, 2, 1024]
-    Output: Logits [Batch, num_classes]
-    """
-    def __init__(self, num_classes: int = len(MODULATION_CLASSES)):
-        super().__init__()
-        self.in_channels = 64
-        # Initial stem
-        self.stem = nn.Sequential(
-            nn.Conv1d(2, 64, kernel_size=7, stride=1, padding=3, bias=False),
-            nn.BatchNorm1d(64),
-            nn.ReLU(inplace=True),
-            nn.MaxPool1d(kernel_size=3, stride=2, padding=1)
-        )
-
-        # 4 ResNet stages
-        self.layer1 = self._make_layer(64, num_blocks=2, stride=1)
-        self.layer2 = self._make_layer(128, num_blocks=2, stride=2)
-        self.layer3 = self._make_layer(256, num_blocks=2, stride=2)
-        self.layer4 = self._make_layer(512, num_blocks=2, stride=2)
-
-        self.avg_pool = nn.AdaptiveAvgPool1d(1)
-        self.fc = nn.Linear(512, num_classes)
-
-    def _make_layer(self, out_channels: int, num_blocks: int, stride: int) -> nn.Sequential:
-        strides = [stride] + [1] * (num_blocks - 1)
-        layers = []
-        for s in strides:
-            layers.append(ResidualBlock1D(self.in_channels, out_channels, s))
-            self.in_channels = out_channels
-        return nn.Sequential(*layers)
-
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        out = self.stem(x)
-        out = self.layer1(out)
-        out = self.layer2(out)
-        out = self.layer3(out)
-        out = self.layer4(out)
-        out = self.avg_pool(out)
-        out = torch.flatten(out, 1)
-        return self.fc(out)
+        def forward(self, x):
+            out = self.stem(x)
+            out = self.layer1(out)
+            out = self.layer2(out)
+            out = self.layer3(out)
+            out = self.layer4(out)
+            out = self.avg_pool(out)
+            out = torch.flatten(out, 1)
+            return self.fc(out)
 
 
 # -------------------------------------------------------------
@@ -257,13 +262,20 @@ class ModulationClassifier:
     """
 
     def __init__(self, model_path: Optional[str] = None, device: Optional[str] = None):
+        self.model_loaded = False
+        self.model = None
+        self.device = None
+        self.confidence_threshold = 0.70  # SRS AC-F04
+
+        if not TORCH_AVAILABLE:
+            return  # Cumulant-only mode on cloud (no torch)
+
         if device is None:
             self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         else:
             self.device = torch.device(device)
 
         self.model = ResNet18_1D(num_classes=len(MODULATION_CLASSES)).to(self.device)
-        self.model_loaded = False
 
         if model_path and os.path.exists(model_path):
             try:
@@ -274,7 +286,6 @@ class ModulationClassifier:
                 self.model_loaded = False
 
         self.model.eval()
-        self.confidence_threshold = 0.70 # SRS AC-F04
 
     def predict(self, samples: np.ndarray, snr_db: Optional[float] = None) -> AMCResult:
         """

@@ -19,6 +19,7 @@ from typing import Optional, List, Dict, Any
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 # Ensure project root is in sys.path
@@ -369,6 +370,34 @@ def download_bin(filename: str):
     if not os.path.exists(path):
         raise HTTPException(status_code=404, detail="Binary payload file not found")
     return FileResponse(path, media_type="application/octet-stream", filename=filename)
+
+
+# ---------------------------------------------------------------------------
+# Serve React SPA (frontend/dist) for all non-API routes
+# This allows the same uvicorn process to serve both the API and the UI.
+# ---------------------------------------------------------------------------
+_FRONTEND_DIST = PROJECT_ROOT / "frontend" / "dist"
+
+if (_FRONTEND_DIST / "assets").exists():
+    app.mount("/assets", StaticFiles(directory=str(_FRONTEND_DIST / "assets")), name="spa_assets")
+
+@app.get("/", include_in_schema=False)
+async def spa_root():
+    idx = _FRONTEND_DIST / "index.html"
+    if idx.exists():
+        return FileResponse(str(idx))
+    return JSONResponse({"status": "SIGNEX API", "docs": "/docs"})
+
+@app.get("/{full_path:path}", include_in_schema=False)
+async def spa_catch_all(full_path: str):
+    """Serve React SPA for any non-API path."""
+    # Let FastAPI handle /api/* and /docs etc — raise 404 so other routes win
+    if full_path.startswith(("api/", "docs", "openapi", "redoc")):
+        raise HTTPException(status_code=404, detail="Not found")
+    idx = _FRONTEND_DIST / "index.html"
+    if idx.exists():
+        return FileResponse(str(idx))
+    return JSONResponse({"error": "Frontend not built"}, status_code=404)
 
 
 def run_server(host: str = "0.0.0.0", port: int = 8000):

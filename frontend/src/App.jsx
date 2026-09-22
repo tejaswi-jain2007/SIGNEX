@@ -9,6 +9,10 @@ import ExportModal from './components/ExportModal';
 import BatchModal from './components/BatchModal';
 import { AlertCircle } from 'lucide-react';
 
+// Backend URL — set VITE_API_URL in Vercel env vars to point to Render backend
+// e.g. https://signex-api.onrender.com
+const API_BASE = import.meta.env.VITE_API_URL || '';
+
 export default function App() {
   const [theme, setTheme] = useState('dark');
   const [airgapGuard, setAirgapGuard] = useState(true);
@@ -85,7 +89,7 @@ export default function App() {
 
   // Fetch presets from FastAPI backend
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/samples')
+    fetch(`${API_BASE}/api/samples`)
       .then((res) => res.json())
       .then((data) => {
         if (data.samples && data.samples.length > 0) {
@@ -173,7 +177,7 @@ export default function App() {
     }, 1050);
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/analyze', {
+      const response = await fetch(`${API_BASE}/api/analyze`, {
         method: 'POST',
         body: formData
       });
